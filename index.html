@@ -129,168 +129,161 @@
         </section>
     </div>
 
-    <script>   
-        // --- Authentication Logic ---
-        const authPage = document.getElementById('auth-page');
-        const mainSite = document.getElementById('main-site');
-        const regForm = document.getElementById('register-form');
-        const userIcon = document.getElementById('user-icon');
-
-        regForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const userData = {
-                fname: document.getElementById('fname').value,
-                lname: document.getElementById('lname').value,
-                email: document.getElementById('email').value
-            };
-            localStorage.setItem('zone_user', JSON.stringify(userData));
-            login(userData);
-        });
-
-        function login(user) {
-            authPage.classList.add('hidden');
-            mainSite.classList.remove('hidden');
-            userIcon.innerText = (user.fname[0] + user.lname[0]).toUpperCase();
-            generateServices(); 
-        }
-
-        window.onload = () => {
-            const savedUser = localStorage.getItem('zone_user');
-            if (savedUser) {
-                login(JSON.parse(savedUser));
-            }
-        };
-
-        function logout() {
-            localStorage.removeItem('zone_user');
-            location.reload();
-        }
-
-        // --- Navigation ---
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => {
-                p.classList.remove('active');
-                p.classList.add('hidden'); 
-            });
-
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                targetPage.classList.add('active');
-            }
-            window.scrollTo(0, 0);
-        }
-
-        // --- Password Toggle ---
-        document.getElementById('togglePass').addEventListener('click', function() {
-            const passInput = document.getElementById('password');
-            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passInput.setAttribute('type', type);
-            this.classList.toggle('fa-eye-slash');
-        });
-
-        // --- Services Generation ---
-
-                // --- Services Generation ---
-        function generateServices() {
-            const container = document.getElementById('services-container');
-            if (!container) return;
-
-            const servicesData = [
-                {
-                    title: "Web Development",
-                    price: 600,
-                    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-                    description: "1. بناء واجهات متجاوبة..."
-                }, // <--- فاصلة هنا
-               {
-                    title: "Mobile App (Android/iOS)",
-                    price: 950,
-                    image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-                    description: "1. تصميم واجهات UI/UX..."
-               }, // <--- فاصلة هنا
-               {
-                    title: "UI/UX Design",
-                    price: 350,
-                    image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
-                    description: "1. دراسة تجربة المستخدم..."
-                },
-                // بقية الخدمات...
-            ];
-
-            // كود الـ Loop يكمل هنا بشكل طبيعي...
-                {
-                    title: "AI & Chatbots",
-                    price: 1200,
-                    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-                    description: "1. بوت ذكاء اصطناعي\n2. معالجة لغات طبيعية\n3. ربط مع WhatsApp/FB\n4. تعلم آلة مخصص\n5. تحليل بيانات ضخمة\n6. أتمتة الردود الذكية\n7. تدريب النموذج ببياناتك\n8. نظام توصية ذكي\n9. التعرف على الصور\n10. تحويل الصوت لنص\n11. تكامل مع ChatGPT API\n12. حماية خصوصية البيانات\n13. تحسين دقة الردود\n14. لوحة تحكم للمحادثات\n15. تحديثات ذكاء مستمرة"
-                },
-                {
-                    title: "Cloud Infrastructure",
-                    price: 800,
-                    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-                    description: "1. إعداد سيرفرات AWS/Azure\n2. نظام Docker & Kubernetes\n3. حماية DDoS\n4. موازنة الحمل Load Balancing\n5. تخزين سحابي آمن\n6. نقل بيانات المواقع\n7. تحسين أداء السيرفر\n8. مراقبة 24 ساعة\n9. جدار حماية متطور\n10. إعداد شبكات افتراضية\n11. تقارير استهلاك الموارد\n12. نظام توزيع المحتوى CDN\n13. إدارة قواعد البيانات\n14. نسخ احتياطي سحابي\n15. دعم تقني للمؤسسات"
-                },
-                {
-                    title: "Cyber Security",
-                    price: 1500,
-                    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-                    description: "1. فحص ثغرات شامل\n2. اختبار اختراق Penetration\n3. حماية بيانات العملاء\n4. سد ثغرات SQL Injection\n5. تشفير بيانات متطور\n6. استجابة للحوادث\n7. تدريب الموظفين أمنياً\n8. تقارير أمان دورية\n9. جدار حماية احترافي\n10. كشف التسلل اللحظي\n11. تأمين تطبيقات الويب\n12. مراجعة الكود برمجياً\n13. شهادات أمان معتمدة\n14. نظام التحقق الثنائي\n15. دعم طوارئ أمني"
-                },
-                {
-                    title: "E-Commerce Expert",
-                    price: 750,
-                    image: "https://images.unsplash.com/photo-1557821552-17105176677c",
-                    description: "1. متجر إلكتروني متكامل\n2. إضافة منتجات غير محدودة\n3. ربط بوابات دفع (Stripe)\n4. نظام تتبع الشحنات\n5. إدارة المخزون\n6. كوبونات خصم وعروض\n7. تقارير مبيعات مفصلة\n8. حسابات للعملاء\n9. قائمة رغبات\n10. توافق مع الضرائب\n11. نسخ موبايل سريعة\n12. ربط مع TikTok Pixel\n13. دردشة مباشرة للبيع\n14. إشعارات عبر الإيميل\n15. تدريب على إدارة المتجر"
-                },
-                {
-                    title: "SEO Mastery",
-                    price: 400,
-                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-                    description: "1. تحليل الكلمات المفتاحية\n2. تصدر نتائج جوجل\n3. باك لينك جودة عالية\n4. تحسين سرعة الأرشفة\n5. كتابة مقالات متوافقة\n6. تحليل المنافسين\n7. ربط Search Console\n8. خرائط موقع Sitemap\n9. تحسين العناوين والوصف\n10. روابط داخلية قوية\n11. إصلاح أخطاء الموقع\n12. تحسين تجربة الموبايل\n13. تقارير شهرية للنمو\n14. زيادة الزوار الحقيقيين\n15. استشارات تسويقية"
-                },
-                {
-                    title: "Devolops Engineer",
-                    price: 1100,
-                    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9",
-                    description: "1. أتمتة CI/CD\n2. إدارة Jenkins/GitLab\n3. مراجعة البنية التحتية\n4. تقليل وقت النشر\n5. أتمتة الاختبارات\n6. إدارة حاويات Docker\n7. مراقبة سجلات الأخطاء\n8. تحسين موارد السيرفر\n9. سكريبتات Bash/Python\n10. إعداد بيئات الاختبار\n11. حماية خطوط الإنتاج\n12. توثيق العمليات\n13. إدارة التكوين Ansible\n14. دعم الأنظمة الموزعة\n15. استشارات هندسية"
-                },
-              
     
-                {
-                    title: "API Integration",
-                    price: 450,
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-                    description: "1. ربط API طرف ثالث\n2. تطوير RESTful API\n3. توثيق Swagger\n4. ربط بوابات شحن\n5. ربط أنظمة محاسبية\n6. مزامنة بيانات تلقائية\n7. حماية الـ Endpoints\n8. استجابة JSON سريعة\n9. ربط مع CRM\n10. حل مشاكل الـ CORS\n11. نظام مصادقة JWT\n12. التعامل مع الـ Webhooks\n13. تقليل استهلاك البيانات\n14. دعم GraphQL\n15. صيانة دورية للربط"
-                },
-                {
-                    title: "Technical Support",
+        <script>   
+    // --- Authentication Logic ---
+    const authPage = document.getElementById('auth-page');
+    const mainSite = document.getElementById('main-site');
+    const regForm = document.getElementById('register-form');
+    const userIcon = document.getElementById('user-icon');
+
+    regForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userData = {
+            fname: document.getElementById('fname').value,
+            lname: document.getElementById('lname').value,
+            email: document.getElementById('email').value
+        };
+        localStorage.setItem('zone_user', JSON.stringify(userData));
+        login(userData);
+    });
+
+    function login(user) {
+        authPage.classList.add('hidden');
+        mainSite.classList.remove('hidden');
+        // التأكد من وجود الحروف الأولى لتجنب الأخطاء
+        const initials = (user.fname[0] || '') + (user.lname[0] || '');
+        userIcon.innerText = initials.toUpperCase();
+        generateServices(); 
+    }
+
+    window.onload = () => {
+        const savedUser = localStorage.getItem('zone_user');
+        if (savedUser) {
+            login(JSON.parse(savedUser));
+        }
+    };
+
+    function logout() {
+        localStorage.removeItem('zone_user');
+        location.reload();
+    }
+
+    // --- Navigation ---
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => {
+            p.classList.remove('active');
+            p.classList.add('hidden'); 
+        });
+
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+            targetPage.classList.remove('hidden');
+            targetPage.classList.add('active');
+        }
+        window.scrollTo(0, 0);
+    }
+
+    // --- Password Toggle ---
+    document.getElementById('togglePass').addEventListener('click', function() {
+        const passInput = document.getElementById('password');
+        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    // --- Services Generation ---
+    function generateServices() {
+        const container = document.getElementById('services-container');
+        if (!container) return;
+
+        const servicesData = [
+            {
+                title: "Web Development",
+                price: 600,
+                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+                description: "1. بناء واجهات متجاوبة..."
+            },
+            {
+                title: "Mobile App (Android/iOS)",
+                price: 950,
+                image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
+                description: "1. تصميم واجهات UI/UX..."
+            },
+            {
+                title: "UI/UX Design",
+                price: 350,
+                image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
+                description: "1. دراسة تجربة المستخدم..."
+            },
+            {
+                title: "AI & Chatbots",
+                price: 1200,
+                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+                description: "1. بوت ذكاء اصطناعي..."
+            },
+            {
+                title: "Cloud Infrastructure",
+                price: 800,
+                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+                description: "1. إعداد سيرفرات AWS/Azure..."
+            },
+            {
+                title: "Cyber Security",
+                price: 1500,
+                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+                description: "1. فحص ثغرات شامل..."
+            },
+            {
+                title: "E-Commerce Expert",
+                price: 750,
+                image: "https://images.unsplash.com/photo-1557821552-17105176677c",
+                description: "1. متجر إلكتروني متكامل..."
+            },
+            {
+                title: "SEO Mastery",
+                price: 400,
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+                description: "1. تحليل الكلمات المفتاحية..."
+            },
+            {
+                title: "API Integration",
+                price: 450,
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+                description: "1. ربط API طرف ثالث..."
+            },
+            {
+                     title: "Technical Support",
+
                     price: 200,
+
                     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+
                     description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية\n8. ضبط إعدادات الإيميل\n9. نقل المواقع لسيرفر آخر\n10. استعادة النسخ الاحتياطية\n11. حماية ضد السبام\n12. مراقبة استقرار الخدمة\n13. توفير حلول بديلة\n14. تقارير صيانة شهرية\n15. توفر على مدار الساعة"
-                }
-            ];
+            },
+        
+        ];
 
-            container.innerHTML = ''; 
-            servicesData.forEach((service) => {
-                container.innerHTML += `
-                    <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
-                        <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
-                        <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
-                        <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية لضمان نمو أعمالك الرقمية.</p>
-                        <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
-                        <div class="flex gap-2">
-                            <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
-                            <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
-                        </div>
+        container.innerHTML = ''; 
+        servicesData.forEach((service) => {
+            container.innerHTML += `
+                <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                    <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
+                    <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
+                    <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
+                    <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
+                    <div class="flex gap-2">
+                        <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
+                        <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
                     </div>
-                `;
-            });
-        }
+                </div>
+            `;
+        });
+    }
 
-        function showDetails(title, description) {
-            alert(`💡 تفاصيل خدمة: ${title}\n\n${description}`);
-        }
+    function showDetails(title, description) {
+        alert(`💡 تفاصيل خدمة: ${title}\n\n${description}`);
+    }
     </script>
 </body>
 </html>
