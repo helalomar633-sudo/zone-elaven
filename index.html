@@ -166,11 +166,22 @@
         }
 
         // --- Navigation ---
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0,0);
-        }
+       // --- Navigation المحسن ---
+function showPage(pageId) {
+    // 1. إخفاء كل الصفحات تماماً عن طريق إضافة class 'hidden' الخاص بـ Tailwind
+    document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active');
+        p.classList.add('hidden'); 
+    });
+
+    // 2. إظهار الصفحة المطلوبة فقط
+    const targetPage = document.getElementById(pageId);
+    targetPage.classList.remove('hidden');
+    targetPage.classList.add('active');
+
+    // 3. العودة لأعلى الصفحة
+    window.scrollTo(0, 0);
+}
 
         // --- Password Toggle ---
         document.getElementById('togglePass').addEventListener('click', function() {
