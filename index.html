@@ -176,58 +176,67 @@
 
     
         <script>   
-    // --- Authentication Logic ---
-    const authPage = document.getElementById('auth-page');
-    const mainSite = document.getElementById('main-site');
-    const regForm = document.getElementById('register-form');
-    const userIcon = document.getElementById('user-icon');
+   // --- العناصر الأساسية ---
+const authPage = document.getElementById('auth-page');
+const mainSite = document.getElementById('main-site');
+const regForm = document.getElementById('register-form');
+const userIcon = document.getElementById('user-icon');
 
-    regForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const userData = {
-            fname: document.getElementById('fname').value,
-            lname: document.getElementById('lname').value,
-            email: document.getElementById('email').value
-        };
-        localStorage.setItem('zone_user', JSON.stringify(userData));
-        login(userData);
-    });
-
-    function login(user) {
-        authPage.classList.add('hidden');
-        mainSite.classList.remove('hidden');
-        // التأكد من وجود الحروف الأولى لتجنب الأخطاء
-        const initials = (user.fname[0] || '') + (user.lname[0] || '');
-        userIcon.innerText = initials.toUpperCase();
-        generateServices(); 
-    }
-
-    window.onload = () => {
-        const savedUser = localStorage.getItem('zone_user');
-        if (savedUser) {
-            login(JSON.parse(savedUser));
-        }
+// --- منطق التسجيل والدخول ---
+regForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const userData = {
+        fname: document.getElementById('fname').value,
+        lname: document.getElementById('lname').value,
+        email: document.getElementById('email').value
     };
+    localStorage.setItem('zone_user', JSON.stringify(userData));
+    login(userData);
+});
 
-    function logout() {
-        localStorage.removeItem('zone_user');
-        location.reload();
+function login(user) {
+    authPage.classList.add('hidden');
+    mainSite.classList.remove('hidden');
+    const initials = (user.fname[0] || '') + (user.lname[0] || '');
+    userIcon.innerText = initials.toUpperCase();
+    generateServices(); // توليد الخدمات فور الدخول
+}
+
+window.onload = () => {
+    const savedUser = localStorage.getItem('zone_user');
+    if (savedUser) {
+        login(JSON.parse(savedUser));
     }
+};
 
-   function showDetails(title, description) {
+function logout() {
+    localStorage.removeItem('zone_user');
+    location.reload();
+}
+
+// --- تنقل الصفحات ---
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+// --- منطق الـ Modal (تفاصيل الخدمة) ---
+function showDetails(title, description) {
     const modal = document.getElementById('serviceModal');
     const mTitle = document.getElementById('modalTitle');
     const mDesc = document.getElementById('modalDescription');
 
-    // وضع البيانات داخل المودال
     mTitle.innerText = title;
     mDesc.innerText = description;
 
-    // إظهار المودال
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-    
-    // منع الصفحة الخلفية من السكرول أثناء فتح النافذة
     document.body.style.overflow = 'hidden'; 
 }
 
@@ -235,91 +244,9 @@ function closeDetails() {
     const modal = document.getElementById('serviceModal');
     modal.classList.add('hidden');
     modal.classList.remove('flex');
-    
-    // إعادة السكرول للطبيعي
     document.body.style.overflow = 'auto';
 }
 
-// إضافة ميزة قفل المودال عند الضغط في أي مكان خارجي
-window.onclick = function(event) {
-    const modal = document.getElementById('serviceModal');
-    if (event.target == modal) {
-        closeDetails();
-    }
-}
-    mTitle.innerText = title;
-    mDesc.innerText = description;
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden'; // لمنع السكرول في الخلفية
-}
-
-function closeDetails() {
-    const modal = document.getElementById('serviceModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto'; // إرجاع السكرول
-}
-
-// --- Navigation Logic (الإصلاح المطلوب) ---
-function showPage(pageId) {
-    // إخفاء كل الصفحات
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
-
-    // إظهار الصفحة المطلوبة فقط
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        // سكرول لأعلى الصفحة عند الانتقال
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-}
-
-// --- Dark Mode Toggle ---
-const darkModeBtn = document.getElementById('darkModeBtn');
-darkModeBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('dark');
-    const icon = darkModeBtn.querySelector('i');
-    if (document.documentElement.classList.contains('dark')) {
-        icon.classList.replace('fa-sun', 'fa-moon');
-        icon.style.color = '#60a5fa'; // Blue
-    } else {
-        icon.classList.replace('fa-moon', 'fa-sun');
-        icon.style.color = '#fbbf24'; // Yellow
-    }
-});
-
-// --- Modal Logic Fix ---
-// ملاحظة: قمت بتعديل وظيفة showDetails لتعمل مع الـ Modal المصمم بدلاً من الـ Alert التقليدي
-
-function showPage(pageId) {
-    // 1. إخفاء كل الصفحات عن طريق حذف class active
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.classList.remove('active');
-    });
-
-    // 2. إظهار الصفحة المطلوبة فقط
-    const targetPage = document.getElementById(pageId);
-    if (targetPage) {
-        targetPage.classList.add('active');
-        // سكرول لأعلى الصفحة بسلاسة
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-}
-
-function closeDetails() {
-    const modal = document.getElementById('serviceModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto';
-}
-
-// قفل المودال عند الضغط خارجه
 window.onclick = function(event) {
     const modal = document.getElementById('serviceModal');
     if (event.target == modal) {
@@ -327,39 +254,38 @@ window.onclick = function(event) {
     }
 }
 
-    // --- Password Toggle ---
-    document.getElementById('togglePass').addEventListener('click', function() {
-        const passInput = document.getElementById('password');
-        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye-slash');
-    });
+// --- توليد كروت الخدمات ---
+function generateServices() {
+    const container = document.getElementById('services-container');
+    if (!container) return;
 
-    // --- Services Generation ---
-    function generateServices() {
-        const container = document.getElementById('services-container');
-        if (!container) return;
-
-        const servicesData = [
-            {
-                title: "Web Development",
-                price: 600,
-                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-                description: "1. بناء واجهات متجاوبة..."
-            },
-            {
-                title: "Mobile App (Android/iOS)",
-                price: 950,
-                image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-                description: "1. تصميم واجهات UI/UX..."
-            },
-            {
+    const servicesData = [
+        {
+            title: "Web Development",
+            price: 600,
+            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            description: "• بناء واجهات متجاوبة\n• برمجة خلفية قوية\n• ربط قواعد البيانات\n• تحسين الأداء"
+        },
+        {
+            title: "Mobile App",
+            price: 950,
+            image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
+            description: "• تطبيقات Android و iOS\n• أداء عالي وسلس\n• تصميم عصري"
+        },
+        // أضف باقي الخدمات هنا بنفس التنسيق...
+        {
+            title: "Technical Support",
+            price: 200,
+            image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+            description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. دعم فني على مدار الساعة"
+        }
+        {
                 title: "UI/UX Design",
                 price: 350,
                 image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
                 description: "1. دراسة تجربة المستخدم..."
             },
-            {
+        {
                 title: "AI & Chatbots",
                 price: 1200,
                 image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
@@ -395,38 +321,41 @@ window.onclick = function(event) {
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
                 description: "1. ربط API طرف ثالث..."
             },
-            {
-                     title: "Technical Support",
+                
+    ];
 
-                    price: 200,
-
-                    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-
-                    description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية\n8. ضبط إعدادات الإيميل\n9. نقل المواقع لسيرفر آخر\n10. استعادة النسخ الاحتياطية\n11. حماية ضد السبام\n12. مراقبة استقرار الخدمة\n13. توفير حلول بديلة\n14. تقارير صيانة شهرية\n15. توفر على مدار الساعة"
-            },
-        
-        ];
-
-        container.innerHTML = ''; 
-        servicesData.forEach((service) => {
-            container.innerHTML += `
-                <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
-                    <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
-                    <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
-                    <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
-                    <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
-                    <div class="flex gap-2">
-                        <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
-                        <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
-                    </div>
+    container.innerHTML = ''; 
+    servicesData.forEach((service) => {
+        container.innerHTML += `
+            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card">
+                <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
+                <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
+                <p class="text-xs text-gray-400 mb-4 line-clamp-2">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
+                <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
+                <div class="flex gap-2">
+                    <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm hover:brightness-110">Buy Now</button>
+                    <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700">Details</button>
                 </div>
-            `;
-        });
-    }
+            </div>
+        `;
+    });
+}
 
-    function showDetails(title, description) {
-        alert(`💡 تفاصيل خدمة: ${title}\n\n${description}`);
-    }
+// --- Dark Mode ---
+document.getElementById('darkModeBtn').addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const icon = darkModeBtn.querySelector('i');
+    icon.classList.toggle('fa-moon');
+    icon.classList.toggle('fa-sun');
+});
+
+// إظهار وإخفاء الباسورد
+document.getElementById('togglePass').addEventListener('click', function() {
+    const passInput = document.getElementById('password');
+    const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passInput.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+});
     </script>
 </body>
 </html>
