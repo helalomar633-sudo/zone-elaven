@@ -193,20 +193,135 @@ function showPage(pageId) {
 
         // --- Services Generation (20 Services) ---
         function generateServices() {
-            const container = document.getElementById('services-container');
-            const titles = ["Web Dev", "Mobile App", "UI/UX Design", "Cloud Systems", "AI Solutions", "Cyber Security", "E-Commerce", "SEO Expert"];
-            
-            for (let i = 1; i <= 20; i++) {
-                const title = titles[i % titles.length] + " " + i;
-                container.innerHTML += `
-                    <div class="glass p-5 rounded-xl flex flex-col">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=300&q=80" class="rounded-lg mb-4 h-40 object-cover">
-                        <h3 class="text-xl font-bold mb-2">${title}</h3>
-                        <p class="text-sm text-gray-400 mb-4 flex-grow">Professional programming service tailored to your business needs with modern architecture.</p>
-                        <div class="text-blue-400 font-bold mb-4 text-lg">$${50 + (i * 10)}</div>
-                        <div class="flex gap-2">
-                            <button onclick="alert('Please contact us to purchase this service')" class="flex-1 btn-premium text-xs py-2 rounded">Order Now</button>
-                            <button onclick="alert('This is a high-end ${title} service including full backend support, API integration, and 24/7 maintenance.')" class="flex-1 border border-purple-500 text-xs py-2 rounded">Details</button>
+    const container = document.getElementById('services-container');
+    
+    const servicesData = [
+        {
+            title: "Web Development",
+            price: 600,
+            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            description: "1. بناء واجهات متجاوبة\n2. تطوير لوحة تحكم\n3. ربط قواعد البيانات\n4. حماية من الثغرات\n5. تحسين SEO داخلي\n6. سرعة تحميل فائقة\n7. شهادة SSL مجانية\n8. استضافة لمدة سنة\n9. بريد رسمي للموقع\n10. دعم لغات متعددة\n11. ربط بوابات الدفع\n12. نسخ احتياطي يومي\n13. كود نظيف وقابل للتطوير\n14. تدريب على الإدارة\n15. دعم فني 24/7"
+        },
+        {
+            title: "Mobile App (Android/iOS)",
+            price: 950,
+            image: "https://images.unsplash.com/photo-1512941930669-b17cb3b48097",
+            description: "1. تصميم واجهات UI/UX\n2. برمجة Flutter هجين\n3. رفع على Google Play\n4. رفع على App Store\n5. نظام إشعارات لحظي\n6. ربط خرائط جوجل\n7. تسجيل دخول اجتماعي\n8. قاعدة بيانات Firebase\n9. أداء سريع وسلس\n10. نظام دفع داخلي\n11. حماية بيانات المستخدمين\n12. تحديثات شهرية\n13. تقارير أخطاء آلية\n14. دعم الوضع الليلي\n15. صيانة فنية شاملة"
+        },
+        {
+            title: "UI/UX Design",
+            price: 350,
+            image: "https://images.unsplash.com/photo-1586717791821-3f44a563eb4c",
+            description: "1. دراسة تجربة المستخدم\n2. رسم Wireframes\n3. تصميم Visual Design\n4. نماذج تفاعلية Prototype\n5. اختيار ألوان جذابة\n6. تنسيق خطوط احترافي\n7. تصميم أيقونات خاصة\n8. ملفات المصدر Figma\n9. تعديلات غير محدودة\n10. اختبار سهولة الاستخدام\n11. تصميم شعار مدمج\n12. ملفات جاهزة للمبرمجين\n13. توافق مع كل الشاشات\n14. تحليل المنافسين\n15. تسليم كافة الأصول"
+        },
+        {
+            title: "AI & Chatbots",
+            price: 1200,
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+            description: "1. بوت ذكاء اصطناعي\n2. معالجة لغات طبيعية\n3. ربط مع WhatsApp/FB\n4. تعلم آلة مخصص\n5. تحليل بيانات ضخمة\n6. أتمتة الردود الذكية\n7. تدريب النموذج ببياناتك\n8. نظام توصية ذكي\n9. التعرف على الصور\n10. تحويل الصوت لنص\n11. تكامل مع ChatGPT API\n12. حماية خصوصية البيانات\n13. تحسين دقة الردود\n14. لوحة تحكم للمحادثات\n15. تحديثات ذكاء مستمرة"
+        },
+        {
+            title: "Cloud Infrastructure",
+            price: 800,
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+            description: "1. إعداد سيرفرات AWS/Azure\n2. نظام Docker & Kubernetes\n3. حماية DDoS\n4. موازنة الحمل Load Balancing\n5. تخزين سحابي آمن\n6. نقل بيانات المواقع\n7. تحسين أداء السيرفر\n8. مراقبة 24 ساعة\n9. جدار حماية متطور\n10. إعداد شبكات افتراضية\n11. تقارير استهلاك الموارد\n12. نظام توزيع المحتوى CDN\n13. إدارة قواعد البيانات\n14. نسخ احتياطي سحابي\n15. دعم تقني للمؤسسات"
+        },
+        {
+            title: "Cyber Security",
+            price: 1500,
+            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+            description: "1. فحص ثغرات شامل\n2. اختبار اختراق Penetration\n3. حماية بيانات العملاء\n4. سد ثغرات SQL Injection\n5. تشفير بيانات متطور\n6. استجابة للحوادث\n7. تدريب الموظفين أمنياً\n8. تقارير أمان دورية\n9. جدار حماية احترافي\n10. كشف التسلل اللحظي\n11. تأمين تطبيقات الويب\n12. مراجعة الكود برمجياً\n13. شهادات أمان معتمدة\n14. نظام التحقق الثنائي\n15. دعم طوارئ أمني"
+        },
+        {
+            title: "E-Commerce Expert",
+            price: 750,
+            image: "https://images.unsplash.com/photo-1557821552-17105176677c",
+            description: "1. متجر إلكتروني متكامل\n2. إضافة منتجات غير محدودة\n3. ربط بوابات دفع (Stripe)\n4. نظام تتبع الشحنات\n5. إدارة المخزون\n6. كوبونات خصم وعروض\n7. تقارير مبيعات مفصلة\n8. حسابات للعملاء\n9. قائمة رغبات\n10. توافق مع الضرائب\n11. نسخ موبايل سريعة\n12. ربط مع TikTok Pixel\n13. دردشة مباشرة للبيع\n14. إشعارات عبر الإيميل\n15. تدريب على إدارة المتجر"
+        },
+        {
+            title: "SEO Mastery",
+            price: 400,
+            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+            description: "1. تحليل الكلمات المفتاحية\n2. تصدر نتائج جوجل\n3. باك لينك جودة عالية\n4. تحسين سرعة الأرشفة\n5. كتابة مقالات متوافقة\n6. تحليل المنافسين\n7. ربط Search Console\n8. خرائط موقع Sitemap\n9. تحسين العناوين والوصف\n10. روابط داخلية قوية\n11. إصلاح أخطاء الموقع\n12. تحسين تجربة الموبايل\n13. تقارير شهرية للنمو\n14. زيادة الزوار الحقيقيين\n15. استشارات تسويقية"
+        },
+        {
+            title: "DevOps Engineer",
+            price: 1100,
+            image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9",
+            description: "1. أتمتة CI/CD\n2. إدارة Jenkins/GitLab\n3. مراجعة البنية التحتية\n4. تقليل وقت النشر\n5. أتمتة الاختبارات\n6. إدارة حاويات Docker\n7. مراقبة سجلات الأخطاء\n8. تحسين موارد السيرفر\n9. سكريبتات Bash/Python\n10. إعداد بيئات الاختبار\n11. حماية خطوط الإنتاج\n12. توثيق العمليات\n13. إدارة التكوين Ansible\n14. دعم الأنظمة الموزعة\n15. استشارات هندسية"
+        },
+        {
+            title: "Quality Assurance (QA)",
+            price: 300,
+            image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+            description: "1. اختبار يدوي دقيق\n2. اختبار آلي Selenium\n3. كشف أخطاء البرمجة\n4. اختبار ضغط السيرفر\n5. توافق المتصفحات\n6. اختبار تجربة المستخدم\n7. تقارير أخطاء Bug Reports\n8. اختبار واجهة البرمجيات\n9. اختبار الأمان الأساسي\n10. مراجعة المتطلبات\n11. اختبار التراجع\n12. تحسين جودة المنتج\n13. محاكاة سلوك المستخدم\n14. اختبار سهولة الدفع\n15. ضمان خلوه من العيوب"
+        },
+        {
+            title: "Graphic Design",
+            price: 250,
+            image: "https://images.unsplash.com/photo-1626785774573-4b799315345d",
+            description: "1. تصميم شعارات Brand\n2. هويات بصرية كاملة\n3. بوسترات سوشيال ميديا\n4. بنرات إعلانية\n5. تصميم بروفايل شركات\n6. كروت عمل احترافية\n7. إنفوجرافيك تعليمي\n8. تعديل صور فوتوغرافية\n9. تصميم أغلفة كتب\n10. ملفات جاهزة للطباعة\n11. تسليم ملفات AI/PSD\n12. تناسق ألوان عبقري\n13. سرعة في التنفيذ\n14. أفكار إبداعية خارج الصندوق\n15. دعم فني للتعديلات"
+        },
+        {
+            title: "Digital Marketing",
+            price: 500,
+            image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312",
+            description: "1. إدارة حملات Facebook\n2. إعلانات Google Ads\n3. تسويق عبر Instagram\n4. إدارة قناة YouTube\n5. زيادة المتابعين حقيقياً\n6. استهداف دقيق للجمهور\n7. كتابة محتوى إعلاني\n8. تحسين معدل التحويل\n9. تحليل النتائج والأرقام\n10. تسويق عبر الإيميل\n11. خطط نمو سنوية\n12. إدارة سمعة العلامة\n13. أفكار فيديوهات Viral\n14. تقارير أداء أسبوعية\n15. وصول عالمي لنشاطك"
+        },
+        {
+            title: "API Integration",
+            price: 450,
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+            description: "1. ربط API طرف ثالث\n2. تطوير RESTful API\n3. توثيق Swagger\n4. ربط بوابات شحن\n5. ربط أنظمة محاسبية\n6. مزامنة بيانات تلقائية\n7. حماية الـ Endpoints\n8. استجابة JSON سريعة\n9. ربط مع CRM\n10. حل مشاكل الـ CORS\n11. نظام مصادقة JWT\n12. التعامل مع الـ Webhooks\n13. تقليل استهلاك البيانات\n14. دعم GraphQL\n15. صيانة دورية للربط"
+        },
+        {
+            title: "Database Admin",
+            price: 700,
+            image: "https://images.unsplash.com/photo-1544383335-9f775d17d248",
+            description: "1. تصميم جداول احترافي\n2. تحسين استعلامات SQL\n3. إدارة MongoDB/MySQL\n4. منع تكرار البيانات\n5. استرجاع بيانات مفقودة\n6. أرشفة بيانات قديمة\n7. حماية من الاختراق\n8. توزيع قواعد البيانات\n9. ربط البيانات بالتطبيقات\n10. نسخ احتياطي مجدول\n11. فحص سلامة البيانات\n12. تحويل قواعد البيانات\n13. استخراج تقارير ذكية\n14. ضبط صلاحيات المستخدمين\n15. دعم تقني لقواعد البيانات"
+        },
+        {
+            title: "Technical Support",
+            price: 200,
+            image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+            description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية\n8. ضبط إعدادات الإيميل\n9. نقل المواقع لسيرفر آخر\n10. استعادة النسخ الاحتياطية\n11. حماية ضد السبام\n12. مراقبة استقرار الخدمة\n13. توفير حلول بديلة\n14. تقارير صيانة شهرية\n15. توفر على مدار الساعة"
+        }
+    ];
+
+    container.innerHTML = ''; 
+
+    servicesData.forEach((service) => {
+        container.innerHTML += `
+            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
+                <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover">
+                <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
+                
+                <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">
+                   خدمة احترافية مقدمة بأعلى معايير الجودة العالمية، تشمل حلولاً متكاملة لدعم أعمالك التقنية وضمان نموها في السوق الرقمي.
+                </p>
+                
+                <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
+                
+                <div class="flex gap-2">
+                    <button onclick="alert('طلب خدمة: ${service.title}')" 
+                        class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-2 rounded-lg text-sm transition-all shadow-lg">
+                        Buy Now
+                    </button>
+                    <button onclick="showDetails('${service.title}', \`${service.description}\`)" 
+                        class="flex-1 border border-gray-600 text-gray-300 hover:bg-gray-700 py-2 rounded-lg text-sm transition-all">
+                        Details
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// وظيفة عرض التفاصيل
+function showDetails(title, description) {
+    // يمكنك هنا استبدال الـ alert بـ Modal حقيقي
+    alert(`💡 تفاصيل خدمة: ${title}\n\n${description}`);
+}
                         </div>
                     </div>
                 `;
