@@ -31,36 +31,33 @@
         }
         .page { display: none; }
         .page.active { display: block; }
-        /* انيميشن لظهور النافذة */
-@keyframes fadeInScale {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-.modal-animate {
-    animation: fadeInScale 0.3s ease-out forwards;
-}
-
-/* حركة الكروت عند مرور الماوس */
-.service-card {
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.service-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 30px rgba(124, 58, 237, 0.2);
-    border-color: #a78bfa !important;
-}
-
-/* ستايل السكرول بار داخل المودال */
-.custom-scroll::-webkit-scrollbar {
-    width: 5px;
-}
-.custom-scroll::-webkit-scrollbar-thumb {
-    background: #7c3aed;
-    border-radius: 10px;
-}
         
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .modal-animate {
+            animation: fadeInScale 0.3s ease-out forwards;
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 30px rgba(124, 58, 237, 0.2);
+            border-color: #a78bfa !important;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #7c3aed;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -139,8 +136,7 @@
 
         <section id="services" class="page min-h-screen p-10">
             <h2 class="text-4xl font-bold mb-12 text-center neon-text">Our Digital Services</h2>
-            <div id="services-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                </div>
+            <div id="services-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
         </section>
 
         <section id="contact" class="page min-h-screen p-10 flex flex-col items-center justify-center">
@@ -158,191 +154,157 @@
             </div>
         </section>
     </div>
+
     <div id="serviceModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-    <div class="glass modal-animate w-full max-w-lg rounded-3xl overflow-hidden border-2 border-purple-500/50 shadow-2xl">
-        <div class="p-6 border-b border-purple-900/50 flex justify-between items-center">
-            <h3 id="modalTitle" class="text-2xl font-bold neon-text">Service Details</h3>
-            <button onclick="closeDetails()" class="text-gray-400 hover:text-white transition">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-        </div>
-        <div id="modalDescription" class="p-8 max-h-[60vh] overflow-y-auto text-gray-200 leading-relaxed custom-scroll whitespace-pre-line">
+        <div class="glass modal-animate w-full max-w-lg rounded-3xl overflow-hidden border-2 border-purple-500/50 shadow-2xl">
+            <div class="p-6 border-b border-purple-900/50 flex justify-between items-center">
+                <h3 id="modalTitle" class="text-2xl font-bold neon-text">Service Details</h3>
+                <button onclick="closeDetails()" class="text-gray-400 hover:text-white transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
             </div>
-        <div class="p-6 bg-purple-900/10 flex justify-end">
-            <button onclick="closeDetails()" class="btn-premium px-6 py-2 rounded-lg font-bold">Close</button>
+            <div id="modalDescription" class="p-8 max-h-[60vh] overflow-y-auto text-gray-200 leading-relaxed custom-scroll whitespace-pre-line text-right" dir="rtl">
+                </div>
+            <div class="p-6 bg-purple-900/10 flex justify-end">
+                <button onclick="closeDetails()" class="btn-premium px-6 py-2 rounded-lg font-bold">Close</button>
+            </div>
         </div>
     </div>
-</div>
 
-    
-        <script>   
-    // --- Authentication Logic ---
-    const authPage = document.getElementById('auth-page');
-    const mainSite = document.getElementById('main-site');
-    const regForm = document.getElementById('register-form');
-    const userIcon = document.getElementById('user-icon');
+    <script>   
+        // --- Navigation Logic (The missing part) ---
+        function showPage(pageId) {
+            // إخفاء كل الصفحات
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
 
-    regForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const userData = {
-            fname: document.getElementById('fname').value,
-            lname: document.getElementById('lname').value,
-            email: document.getElementById('email').value
-        };
-        localStorage.setItem('zone_user', JSON.stringify(userData));
-        login(userData);
-    });
-
-    function login(user) {
-        authPage.classList.add('hidden');
-        mainSite.classList.remove('hidden');
-        // التأكد من وجود الحروف الأولى لتجنب الأخطاء
-        const initials = (user.fname[0] || '') + (user.lname[0] || '');
-        userIcon.innerText = initials.toUpperCase();
-        generateServices(); 
-    }
-
-    window.onload = () => {
-        const savedUser = localStorage.getItem('zone_user');
-        if (savedUser) {
-            login(JSON.parse(savedUser));
+            // إظهار الصفحة المطلوبة فقط
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                // سكرول لأعلى الصفحة عند الانتقال
+                window.scrollTo(0, 0);
+            }
         }
-    };
 
-    function logout() {
-        localStorage.removeItem('zone_user');
-        location.reload();
-    }
+        // --- Authentication Logic ---
+        const authPage = document.getElementById('auth-page');
+        const mainSite = document.getElementById('main-site');
+        const regForm = document.getElementById('register-form');
+        const userIcon = document.getElementById('user-icon');
 
-    // --- Navigation ---
-    function showDetails(title, description) {
-    const modal = document.getElementById('serviceModal');
-    const mTitle = document.getElementById('modalTitle');
-    const mDesc = document.getElementById('modalDescription');
-
-    mTitle.innerText = title;
-    mDesc.innerText = description;
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden'; // لمنع السكرول في الخلفية
-}
-
-function closeDetails() {
-    const modal = document.getElementById('serviceModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto'; // إرجاع السكرول
-}
-
-// قفل المودال لو المستخدم ضغط بره الكارت
-window.onclick = function(event) {
-    const modal = document.getElementById('serviceModal');
-    if (event.target == modal) {
-        closeDetails();
-    }
-}
-
-    // --- Password Toggle ---
-    document.getElementById('togglePass').addEventListener('click', function() {
-        const passInput = document.getElementById('password');
-        const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
-        passInput.setAttribute('type', type);
-        this.classList.toggle('fa-eye-slash');
-    });
-
-    // --- Services Generation ---
-    function generateServices() {
-        const container = document.getElementById('services-container');
-        if (!container) return;
-
-        const servicesData = [
-            {
-                title: "Web Development",
-                price: 600,
-                image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-                description: "1. بناء واجهات متجاوبة..."
-            },
-            {
-                title: "Mobile App (Android/iOS)",
-                price: 950,
-                image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-                description: "1. تصميم واجهات UI/UX..."
-            },
-            {
-                title: "UI/UX Design",
-                price: 350,
-                image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
-                description: "1. دراسة تجربة المستخدم..."
-            },
-            {
-                title: "AI & Chatbots",
-                price: 1200,
-                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-                description: "1. بوت ذكاء اصطناعي..."
-            },
-            {
-                title: "Cloud Infrastructure",
-                price: 800,
-                image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-                description: "1. إعداد سيرفرات AWS/Azure..."
-            },
-            {
-                title: "Cyber Security",
-                price: 1500,
-                image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-                description: "1. فحص ثغرات شامل..."
-            },
-            {
-                title: "E-Commerce Expert",
-                price: 750,
-                image: "https://images.unsplash.com/photo-1557821552-17105176677c",
-                description: "1. متجر إلكتروني متكامل..."
-            },
-            {
-                title: "SEO Mastery",
-                price: 400,
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-                description: "1. تحليل الكلمات المفتاحية..."
-            },
-            {
-                title: "API Integration",
-                price: 450,
-                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-                description: "1. ربط API طرف ثالث..."
-            },
-            {
-                     title: "Technical Support",
-
-                    price: 200,
-
-                    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-
-                    description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية\n8. ضبط إعدادات الإيميل\n9. نقل المواقع لسيرفر آخر\n10. استعادة النسخ الاحتياطية\n11. حماية ضد السبام\n12. مراقبة استقرار الخدمة\n13. توفير حلول بديلة\n14. تقارير صيانة شهرية\n15. توفر على مدار الساعة"
-            },
-        
-        ];
-
-        container.innerHTML = ''; 
-        servicesData.forEach((service) => {
-            container.innerHTML += `
-                <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
-                    <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
-                    <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
-                    <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
-                    <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
-                    <div class="flex gap-2">
-                        <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
-                        <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
-                    </div>
-                </div>
-            `;
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userData = {
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value
+            };
+            localStorage.setItem('zone_user', JSON.stringify(userData));
+            login(userData);
         });
-    }
 
-    function showDetails(title, description) {
-        alert(`💡 تفاصيل خدمة: ${title}\n\n${description}`);
-    }
+        function login(user) {
+            authPage.classList.add('hidden');
+            mainSite.classList.remove('hidden');
+            const initials = (user.fname[0] || '') + (user.lname[0] || '');
+            userIcon.innerText = initials.toUpperCase();
+            generateServices(); 
+        }
+
+        window.onload = () => {
+            const savedUser = localStorage.getItem('zone_user');
+            if (savedUser) {
+                login(JSON.parse(savedUser));
+            }
+        };
+
+        function logout() {
+            localStorage.removeItem('zone_user');
+            location.reload();
+        }
+
+        // --- Modal Logic ---
+        function showDetails(title, description) {
+            const modal = document.getElementById('serviceModal');
+            const mTitle = document.getElementById('modalTitle');
+            const mDesc = document.getElementById('modalDescription');
+
+            mTitle.innerText = title;
+            mDesc.innerText = description;
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeDetails() {
+            const modal = document.getElementById('serviceModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target == modal) {
+                closeDetails();
+            }
+        }
+
+        // --- Password Toggle ---
+        document.getElementById('togglePass').addEventListener('click', function() {
+            const passInput = document.getElementById('password');
+            const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passInput.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        // --- Services Generation ---
+        function generateServices() {
+            const container = document.getElementById('services-container');
+            if (!container) return;
+
+            const servicesData = [
+                {
+                    title: "Web Development",
+                    price: 600,
+                    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+                    description: "1. بناء واجهات متجاوبة\n2. أنظمة لوحة تحكم\n3. ربط قواعد البيانات\n4. تحسين الأداء والأمان"
+                },
+                {
+                    title: "Mobile App",
+                    price: 950,
+                    image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
+                    description: "1. تصميم واجهات UI/UX\n2. تطبيقات Android و iOS\n3. رفع التطبيقات على المتاجر"
+                },
+                {
+                    title: "Technical Support",
+                    price: 200,
+                    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+                    description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية"
+                }
+                // يمكنك إضافة باقي الخدمات هنا بنفس التنسيق
+            ];
+
+            container.innerHTML = ''; 
+            servicesData.forEach((service) => {
+                container.innerHTML += `
+                    <div class="glass p-5 rounded-xl flex flex-col service-card">
+                        <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
+                        <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
+                        <p class="text-xs text-gray-400 mb-4 line-clamp-2">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
+                        <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
+                        <div class="flex gap-2">
+                            <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
+                            <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
     </script>
 </body>
 </html>
