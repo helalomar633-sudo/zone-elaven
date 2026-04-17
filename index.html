@@ -176,7 +176,8 @@
 
     
         <script>   
-            // عند تحميل الصفحة، تأكد من إظهار صفحة التسجيل وإخفاء الموقع
+        <script>   
+// عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('auth-page').classList.remove('hidden');
     document.getElementById('main-site').classList.add('hidden');
@@ -184,28 +185,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // التعامل مع فورم التسجيل
 document.getElementById('register-form').addEventListener('submit', (e) => {
-    e.preventDefault(); // منع الصفحة من إعادة التحميل
+    e.preventDefault(); 
 
     const fname = document.getElementById('fname').value;
-    const lname = document.getElementById('lname').value;
-
-    // إظهار أول حرف من الاسم في أيقونة المستخدم
-    document.getElementById('user-icon').innerText = fname[0].toUpperCase();
+    
+    // إظهار أول حرف من الاسم
+    const userIcon = document.getElementById('user-icon');
+    if(userIcon) userIcon.innerText = fname[0].toUpperCase();
 
     // إخفاء صفحة التسجيل وإظهار الموقع
     document.getElementById('auth-page').classList.add('hidden');
     document.getElementById('main-site').classList.remove('hidden');
 
-    // تشغيل دالة توليد الخدمات
+    // تأكيد إظهار صفحة Home عند الدخول لأول مرة
+    showPage('home');
+    
+    // توليد الخدمات
     generateServices();
 });
 
-// دالة التنقل بين الصفحات (Home, About, etc.)
+// دالة التنقل بين الصفحات
 function showPage(pageId) {
+    // إخفاء كل الصفحات عن طريق إزالة active وإضافة hidden (للتأكد)
     document.querySelectorAll('.page').forEach(page => {
         page.classList.remove('active');
+        page.style.display = 'none'; // تأكيد الإخفاء
     });
-    document.getElementById(pageId).classList.add('active');
+    
+    // إظهار الصفحة المطلوبة
+    const activePage = document.getElementById(pageId);
+    if(activePage) {
+        activePage.classList.add('active');
+        activePage.style.display = 'block'; // تأكيد الإظهار
+    }
+    
     window.scrollTo(0, 0);
 }
 
@@ -222,9 +235,10 @@ function closeDetails() {
 
 // دالة تسجيل الخروج
 function logout() {
-    location.reload(); // أسهل طريقة للعودة لحالة التسجيل
+    location.reload(); 
 }
-           // --- Services Generation ---
+
+// --- Services Generation ---
 function generateServices() {
     const container = document.getElementById('services-container');
     if (!container) return;
@@ -234,13 +248,7 @@ function generateServices() {
             title: "Web Development",
             price: 600,
             image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-            description: `• Modern Frontend Architecture: Building responsive, high-performance user interfaces.
-• Robust Backend Logic: Developing secure and scalable server-side applications.
-• Premium Visual Identity: Specialized in creating "Premium Design" aesthetics—featuring sleek dark modes.
-• SaaS & Platform Development: End-to-end creation of custom SaaS products.
-• Database Management: Designing and integrating optimized database structures.
-• Clean Code & SEO Optimization: Writing maintainable, well-documented code.
-• Intuitive Admin Dashboards: Crafting user-friendly management panels.`
+            description: `• Modern Frontend Architecture\n• Robust Backend Logic\n• Premium Visual Identity\n• Clean Code & SEO`
         },
         {
             title: "Mobile App (Android/iOS)",
@@ -294,7 +302,7 @@ function generateServices() {
             title: "Technical Support",
             price: 200,
             image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-            description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. تنظيف المواقع من الفيروسات\n4. دعم فني عبر الشات\n5. تحديث إضافات ووردبريس\n6. تحسين سرعة الموقع\n7. استشارات تقنية"
+            description: "1. حل مشاكل المواقع\n2. إصلاح أخطاء الكود\n3. استشارات تقنية"
         }
     ];
 
@@ -314,6 +322,7 @@ function generateServices() {
         `;
     });
 }
+</script>
     </script>
 </body>
 </html>
