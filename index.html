@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,106 +7,159 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { background-color: #050505; color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: 0.3s; }
-        .dark-mode { background-color: #f0f0f0; color: #1a1a1a; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .neon-text { color: #bc13fe; text-shadow: 0 0 10px #bc13fe, 0 0 20px #bc13fe; }
-        .btn-gradient { background: linear-gradient(90deg, #1e3a8a, #7e22ce); transition: 0.3s; }
-        .btn-gradient:hover { opacity: 0.8; transform: translateY(-2px); }
-        .hidden-page { display: none; }
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .neon-text {
+            color: #a78bfa;
+            text-shadow: 0 0 10px #7c3aed;
+        }
+        .btn-premium {
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+            transition: 0.3s ease;
+        }
+        .btn-premium:hover {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+            transform: translateY(-2px);
+        }
+        .page { display: none; }
+        .page.active { display: block; }
     </style>
 </head>
 <body>
 
-    <section id="login-page" class="min-h-screen flex items-center justify-center p-6">
+    <div id="auth-page" class="min-h-screen flex items-center justify-center p-6">
         <div class="glass p-8 rounded-2xl w-full max-w-md">
-            <h2 class="text-3xl font-bold mb-6 text-center neon-text">ZONE Login</h2>
-            <div class="space-y-4">
+            <h2 class="text-3xl font-bold mb-6 neon-text text-center">Welcome to ZONE</h2>
+            <form id="register-form" class="space-y-4">
                 <div class="flex gap-2">
-                    <input type="text" id="fname" placeholder="First Name" class="w-1/2 p-3 rounded bg-gray-900 border border-purple-500 text-white outline-none">
-                    <input type="text" id="lname" placeholder="Last Name" class="w-1/2 p-3 rounded bg-gray-900 border border-purple-500 text-white outline-none">
+                    <input type="text" id="fname" placeholder="First Name" class="w-1/2 p-3 rounded bg-gray-900 border border-gray-700 outline-none focus:border-purple-500" required>
+                    <input type="text" id="lname" placeholder="Last Name" class="w-1/2 p-3 rounded bg-gray-900 border border-gray-700 outline-none focus:border-purple-500" required>
                 </div>
-                <input type="email" id="email" placeholder="Email Address" class="w-full p-3 rounded bg-gray-900 border border-purple-500 text-white outline-none">
+                <input type="email" id="email" placeholder="Email Address" class="w-full p-3 rounded bg-gray-900 border border-gray-700 outline-none focus:border-purple-500" required>
                 <div class="relative">
-                    <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded bg-gray-900 border border-purple-500 text-white outline-none">
-                    <i id="togglePass" class="fas fa-eye absolute right-3 top-4 cursor-pointer text-purple-400"></i>
+                    <input type="password" id="password" placeholder="Password" class="w-full p-3 rounded bg-gray-900 border border-gray-700 outline-none focus:border-purple-500" required>
+                    <i id="togglePass" class="fas fa-eye absolute right-3 top-4 cursor-pointer text-gray-400"></i>
                 </div>
-                <button onclick="handleLogin()" class="w-full btn-gradient p-3 rounded-lg font-bold text-white uppercase tracking-wider">Login</button>
-            </div>
+                <button type="submit" class="w-full btn-premium p-3 rounded font-bold uppercase">Sign Up</button>
+            </form>
         </div>
-    </section>
+    </div>
 
-    <main id="main-site" class="hidden-page">
-        <nav class="glass sticky top-0 z-50 p-4 flex justify-between items-center px-10">
-            <div class="text-2xl font-black tracking-tighter text-blue-500">ZONE<span class="text-purple-500">.</span></div>
-            <ul class="flex gap-6 font-semibold cursor-pointer">
-                <li onclick="showPage('home')" class="hover:text-purple-400">Home</li>
-                <li onclick="showPage('about')" class="hover:text-purple-400">About</li>
-                <li onclick="showPage('services')" class="hover:text-purple-400">Services</li>
-                <li onclick="showPage('contact')" class="hover:text-purple-400">Contact</li>
-            </ul>
-            <div class="flex items-center gap-4">
-                <i onclick="toggleDarkMode()" class="fas fa-moon cursor-pointer text-xl"></i>
-                <div id="user-avatar" onclick="toggleLogout()" class="relative w-10 h-10 rounded-full btn-gradient flex items-center justify-center cursor-pointer font-bold border-2 border-white">
-                    JS
-                    <div id="logout-menu" class="hidden absolute top-12 right-0 bg-red-600 text-white p-2 rounded shadow-lg w-32 text-center">
-                        <button onclick="logout()">Logout</button>
+    <div id="main-site" class="hidden">
+        <nav class="glass sticky top-0 z-50 p-4 flex justify-between items-center px-8 border-b border-purple-900/50">
+            <div class="text-2xl font-black neon-text">ZONE</div>
+            <div class="hidden md:flex space-x-6 font-medium">
+                <button onclick="showPage('home')" class="hover:text-purple-400 transition">Home</button>
+                <button onclick="showPage('about')" class="hover:text-purple-400 transition">About Us</button>
+                <button onclick="showPage('services')" class="hover:text-purple-400 transition">Services</button>
+                <button onclick="showPage('contact')" class="hover:text-purple-400 transition">Contact</button>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="darkModeBtn"><i class="fas fa-moon text-xl text-blue-400"></i></button>
+                <div class="relative group">
+                    <div id="user-icon" class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold cursor-pointer border-2 border-blue-500"></div>
+                    <div class="absolute right-0 mt-2 w-48 glass hidden group-hover:block rounded-lg p-2 shadow-2xl">
+                        <button onclick="logout()" class="w-full text-left p-2 hover:bg-red-600 rounded transition text-sm">Logout</button>
                     </div>
                 </div>
             </div>
         </nav>
 
-        <section id="home" class="page min-h-screen flex flex-col items-center justify-center text-center p-10">
-            <img src="https://via.placeholder.com/150/1e3a8a/bc13fe?text=ZONE+LOGO" class="w-32 mb-6 rounded-full shadow-2xl border-4 border-purple-500" alt="Logo">
+        <section id="home" class="page active min-h-screen flex flex-col items-center justify-center text-center p-10">
+            <div class="mb-8 w-40 h-40 rounded-full glass flex items-center justify-center border-4 border-purple-500 animate-pulse">
+                <span class="text-5xl font-black neon-text">Z</span>
+            </div>
             <h1 class="text-6xl font-extrabold mb-4">Welcome to <span class="neon-text">ZONE</span></h1>
-            <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">
-                We craft the future with the latest technologies and the finest global designs. 
-                Innovation is not just a goal; it's our standard.
-            </p>
+            <p class="text-xl text-gray-400 max-w-2xl">We shape the future with the latest technologies and the finest global designs.</p>
         </section>
 
-        <section id="about" class="page hidden-page min-h-screen p-10 flex flex-col items-center">
-            <h2 class="text-4xl font-bold mb-10 neon-text">About Us</h2>
-            <div class="grid md:grid-cols-2 gap-10 items-center max-w-6xl">
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" class="rounded-2xl shadow-2xl border border-blue-500" alt="Programming">
-                <div class="space-y-6 text-lg text-gray-300">
-                    <p>We are a leading software development firm dedicated to transforming complex ideas into seamless digital experiences. Our team thrives on solving architectural challenges with precision.</p>
-                    <p>At ZONE, we specialize in building high-performance web applications, mobile solutions, and enterprise software that drives growth. Our philosophy combines aesthetics with robust functionality.</p>
-                    <p>With a decade of experience, we have successfully delivered over 500 projects globally. We don’t just write code; we engineer solutions that empower businesses to lead in the digital era.</p>
+        <section id="about" class="page min-h-screen p-10 mt-10">
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="Coding" class="rounded-2xl shadow-2xl border-2 border-blue-500">
+                <div>
+                    <h2 class="text-4xl font-bold mb-6 neon-text">About ZONE</h2>
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p>ZONE is a leading software development company dedicated to transforming ideas into powerful digital realities. We specialize in building scalable systems and high-performance applications.</p>
+                        <p>Our team consists of expert developers and creative designers who work tirelessly to ensure every project meets international standards of excellence and innovation.</p>
+                        <p>We don't just write code; we engineer solutions that drive growth and provide users with an unparalleled digital experience in an ever-evolving technological landscape.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="services" class="page hidden-page min-h-screen p-10">
-            <h2 class="text-4xl font-bold mb-10 text-center neon-text">Our Digital Services</h2>
-            <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section id="services" class="page min-h-screen p-10">
+            <h2 class="text-4xl font-bold mb-12 text-center neon-text">Our Digital Services</h2>
+            <div id="services-container" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 </div>
         </section>
 
-        <section id="contact" class="page hidden-page min-h-screen p-10 flex flex-col items-center justify-center text-center">
-            <h2 class="text-4xl font-bold mb-10 neon-text">Get In Touch</h2>
-            <div class="glass p-10 rounded-3xl space-y-8 w-full max-w-2xl">
-                <div class="flex items-center justify-center gap-4 text-2xl">
-                    <i class="fab fa-whatsapp text-green-500"></i>
-                    <span>+20 1221546924</span>
+        <section id="contact" class="page min-h-screen p-10 flex flex-col items-center justify-center">
+            <div class="glass p-10 rounded-3xl w-full max-w-2xl text-center space-y-8">
+                <h2 class="text-4xl font-bold neon-text">Get In Touch</h2>
+                <div class="flex flex-col space-y-4 text-xl">
+                    <a href="https://wa.me/201221546924" class="hover:text-green-400"><i class="fab fa-whatsapp mr-3"></i> 01221546924</a>
+                    <a href="mailto:helalomar633@gmail.com" class="hover:text-blue-400"><i class="fas fa-envelope mr-3"></i> helalomar633@gmail.com</a>
                 </div>
-                <div class="flex items-center justify-center gap-4 text-2xl">
-                    <i class="fas fa-envelope text-blue-400"></i>
-                    <span>helalomar633@gmail.com</span>
-                </div>
-                <div class="flex justify-center gap-8 text-4xl pt-6">
-                    <i class="fab fa-instagram cursor-pointer hover:text-pink-500 transition"></i>
-                    <i class="fab fa-telegram cursor-pointer hover:text-blue-500 transition"></i>
-                    <i class="fab fa-linkedin cursor-pointer hover:text-blue-700 transition"></i>
+                <div class="flex justify-center space-x-8 text-3xl">
+                    <a href="#" class="hover:text-pink-500"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-blue-500"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="hover:text-blue-700"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </section>
-    </main>
+    </div>
 
     <script>
-        // --- Logic & Functions ---
+        // --- Authentication Logic ---
+        const authPage = document.getElementById('auth-page');
+        const mainSite = document.getElementById('main-site');
+        const regForm = document.getElementById('register-form');
+        const userIcon = document.getElementById('user-icon');
 
-        // Toggle Password visibility
+        regForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const userData = {
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value
+            };
+            localStorage.setItem('zone_user', JSON.stringify(userData));
+            login(userData);
+        });
+
+        function login(user) {
+            authPage.classList.add('hidden');
+            mainSite.classList.remove('hidden');
+            userIcon.innerText = (user.fname[0] + user.lname[0]).toUpperCase();
+        }
+
+        window.onload = () => {
+            const savedUser = localStorage.getItem('zone_user');
+            if (savedUser) login(JSON-parse(savedUser));
+            generateServices();
+        };
+
+        function logout() {
+            localStorage.removeItem('zone_user');
+            location.reload();
+        }
+
+        // --- Navigation ---
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        // --- Password Toggle ---
         document.getElementById('togglePass').addEventListener('click', function() {
             const passInput = document.getElementById('password');
             const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -114,82 +167,26 @@
             this.classList.toggle('fa-eye-slash');
         });
 
-        // Login Logic
-        function handleLogin() {
-            const fname = document.getElementById('fname').value;
-            const lname = document.getElementById('lname').value;
-            const email = document.getElementById('email').value;
-
-            if(fname && lname && email) {
-                const user = { fname, lname, email };
-                localStorage.setItem('zone_user', JSON.stringify(user));
-                renderSite(user);
-            } else {
-                alert("Please fill all fields");
-            }
-        }
-
-        // Check if user logged in
-        window.onload = () => {
-            const savedUser = localStorage.getItem('zone_user');
-            if(savedUser) {
-                renderSite(JSON.parse(savedUser));
-            }
-            generateServices();
-        };
-
-        function renderSite(user) {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('main-site').classList.remove('hidden-page');
-            const initials = (user.fname[0] + user.lname[0]).toUpperCase();
-            document.getElementById('user-avatar').firstChild.textContent = initials;
-        }
-
-        function logout() {
-            localStorage.removeItem('zone_user');
-            location.reload();
-        }
-
-        function toggleLogout() {
-            document.getElementById('logout-menu').classList.toggle('hidden');
-        }
-
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden-page'));
-            document.getElementById(pageId).classList.remove('hidden-page');
-            window.scrollTo(0,0);
-        }
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-
-        // Generate 20 Services
+        // --- Services Generation (20 Services) ---
         function generateServices() {
-            const grid = document.getElementById('services-grid');
-            const services = [
-                "Web Development", "Mobile Apps", "UI/UX Design", "Cloud Solutions", 
-                "AI Integration", "Cyber Security", "Database Management", "DevOps",
-                "E-commerce", "API Development", "Blockchain", "SaaS Solutions",
-                "Data Analytics", "Game Dev", "AR/VR", "IT Consulting",
-                "SEO Optimization", "Software Testing", "Machine Learning", "CRM Systems"
-            ];
-
-            services.forEach((service, i) => {
-                const card = `
-                    <div class="glass p-5 rounded-xl flex flex-col gap-3 hover:scale-105 transition transform">
-                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=300&q=80" class="rounded-lg h-40 object-cover">
-                        <h3 class="text-xl font-bold text-blue-400">${service}</h3>
-                        <p class="text-sm text-gray-400">High-end professional ${service.toLowerCase()} tailored for your business needs.</p>
-                        <span class="text-purple-400 font-bold">$${(i + 1) * 150}</span>
-                        <div class="flex gap-2 mt-auto">
-                            <button onclick="alert('Please contact us to purchase this service')" class="flex-1 text-xs btn-gradient p-2 rounded">Order Now</button>
-                            <button onclick="alert('${service}: This is a high-performance solution designed with the latest frameworks to ensure scalability and speed.')" class="flex-1 text-xs bg-gray-700 p-2 rounded">Details</button>
+            const container = document.getElementById('services-container');
+            const titles = ["Web Dev", "Mobile App", "UI/UX Design", "Cloud Systems", "AI Solutions", "Cyber Security", "E-Commerce", "SEO Expert"];
+            
+            for (let i = 1; i <= 20; i++) {
+                const title = titles[i % titles.length] + " " + i;
+                container.innerHTML += `
+                    <div class="glass p-5 rounded-xl flex flex-col">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=300&q=80" class="rounded-lg mb-4 h-40 object-cover">
+                        <h3 class="text-xl font-bold mb-2">${title}</h3>
+                        <p class="text-sm text-gray-400 mb-4 flex-grow">Professional programming service tailored to your business needs with modern architecture.</p>
+                        <div class="text-blue-400 font-bold mb-4 text-lg">$${50 + (i * 10)}</div>
+                        <div class="flex gap-2">
+                            <button onclick="alert('Please contact us to purchase this service')" class="flex-1 btn-premium text-xs py-2 rounded">Order Now</button>
+                            <button onclick="alert('This is a high-end ${title} service including full backend support, API integration, and 24/7 maintenance.')" class="flex-1 border border-purple-500 text-xs py-2 rounded">Details</button>
                         </div>
                     </div>
                 `;
-                grid.innerHTML += card;
-            });
+            }
         }
     </script>
 </body>
