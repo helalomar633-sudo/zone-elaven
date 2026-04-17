@@ -1,154 +1,385 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zone | Premium Services</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>ZONE - Shaping the Future</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #050505; color: white; overflow-x: hidden; scroll-behavior: smooth; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .shiny-purple { background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%); box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-        .card-hover:hover { transform: translateY(-10px); border-color: #a855f7; transition: all 0.3s ease; }
-        .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,0.9); align-items: center; justify-content: center; padding: 20px; }
-        .modal.active { display: flex; }
-        section { min-height: 80vh; padding-top: 100px; }
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #16161d;
+            --primary-blue: #1e3a8a;
+            --glow-purple: #a855f7;
+            --text-white: #ffffff;
+            --text-gray: #a0aec0;
+        }
+
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --bg-card: #ffffff;
+            --primary-blue: #3b82f6;
+            --glow-purple: #8b5cf6;
+            --text-white: #1a202c;
+            --text-gray: #4a5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
+        }
+
+        /* Login Page Style */
+        #login-page {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-blue) 100%);
+        }
+
+        .login-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px var(--glow-purple);
+            width: 400px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            background: #2d3748;
+            border: 1px solid var(--glow-purple);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 38px;
+            cursor: pointer;
+            color: var(--glow-purple);
+        }
+
+        button.btn-main {
+            width: 100%;
+            padding: 12px;
+            background: var(--glow-purple);
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--glow-purple);
+        }
+
+        /* Main Website Layout */
+        #main-site { display: none; }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glow-purple);
+        }
+
+        .nav-links span {
+            margin: 0 15px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--glow-purple);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 100px 10% 50px;
+            min-height: 100vh;
+            display: none;
+        }
+
+        section.active { display: block; }
+
+        /* Home Page */
+        .hero {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(to right, #60a5fa, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        /* About Us */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            width: 50%;
+            border-radius: 20px;
+            box-shadow: 0 0 30px var(--primary-blue);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            text-align: center;
+        }
+
+        .service-card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+
+        .price { color: var(--glow-purple); font-size: 1.2rem; font-weight: bold; margin: 10px 0; }
+
+        .btn-group { display: flex; gap: 10px; margin-top: 15px; }
+
+        /* Contact */
+        .contact-container {
+            text-align: center;
+        }
+
+        .social-icons {
+            font-size: 2.5rem;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-icons i { cursor: pointer; color: var(--glow-purple); }
+
+        .logout-menu {
+            position: absolute;
+            top: 70px;
+            right: 5%;
+            background: var(--bg-card);
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            border: 1px solid var(--glow-purple);
+        }
     </style>
 </head>
 <body>
 
-    <nav class="p-6 flex justify-between items-center sticky top-0 z-50 glass">
-        <div class="text-3xl font-bold tracking-tighter text-purple-500">ZONE</div>
-        <ul class="hidden md:flex space-x-reverse space-x-8 text-sm uppercase tracking-widest">
-            <li><a href="#home" class="hover:text-purple-400 transition">الرئيسية</a></li>
-            <li><a href="#about" class="hover:text-purple-400 transition">من نحن</a></li>
-            <li><a href="#services" class="hover:text-purple-400 transition">خدماتنا</a></li>
-            <li><a href="#contact" class="hover:text-purple-400 transition">اتصل بنا</a></li>
-        </ul>
-    </nav>
-
-    <section id="home" class="flex flex-col items-center justify-center text-center px-6">
-        <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">مرحباً بك في ZONE</h1>
-        <p class="text-slate-400 text-xl max-w-2xl">نحن نصنع المستقبل الرقمي بأحدث التقنيات وأفضل التصاميم العالمية.</p>
-    </section>
-
-    <section id="about" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="glass p-10 rounded-3xl border border-purple-500/20">
-            <div class="text-center mb-10">
-                <h2 class="text-4xl font-bold text-purple-400 mb-4">من نحن</h2>
-                <div class="h-1 w-20 bg-purple-500 mx-auto rounded-full"></div>
+    <div id="login-page">
+        <div class="login-card">
+            <h2 style="text-align:center; margin-bottom: 20px;">Welcome to ZONE</h2>
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" id="fname" placeholder="Enter first name">
             </div>
-            <p class="text-slate-300 text-lg leading-relaxed text-center max-w-4xl mx-auto">
-                نحن فريق متكامل من المبدعين والمطورين، نسعى لتقديم حلول رقمية مبتكرة تساعد الشركات والأفراد على النمو في العالم الرقمي. خبرتنا تمتد لسنوات في البرمجة، التصميم، والأمن السيبراني.
-            </p>
-        </div>
-    </section>
-
-    <section id="services" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-indigo-400">خدماتنا المميزة</h2>
-            <p class="text-slate-400">حلول عالية الأداء لنموك الرقمي</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+            <div class="input-group">
+                <label>Last Name</label>
+                <input type="text" id="lname" placeholder="Enter last name">
             </div>
-    </section>
-
-    <section id="contact" class="py-20 px-6 max-w-7xl mx-auto mb-20">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-purple-400 mb-4">تواصل معنا</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div class="glass p-8 rounded-3xl flex flex-col space-y-6">
-                <a href="tel:01221546924" class="flex items-center space-x-reverse space-x-4 group p-4 hover:bg-white/5 rounded-2xl transition">
-                    <i class="fab fa-whatsapp text-4xl text-green-500"></i>
-                    <div><p class="text-sm text-slate-400">واتساب</p><p class="text-xl font-bold">01221546924</p></div>
-                </a>
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="email@zone.com">
             </div>
-            <div class="glass p-8 rounded-3xl text-center">
-                <p class="text-slate-400 mb-8">تابعنا على منصات التواصل</p>
-                <div class="flex justify-center gap-6">
-                    <a href="#" class="w-14 h-14 flex items-center justify-center rounded-full glass hover:text-pink-500 transition text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-14 h-14 flex items-center justify-center rounded-full glass hover:text-blue-500 transition text-2xl"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="pass" placeholder="••••••••">
+                <i class="fas fa-eye toggle-password" onclick="togglePass()"></i>
             </div>
-        </div>
-    </section>
-
-    <div id="service-modal" class="modal">
-        <div class="glass max-w-2xl w-full p-8 rounded-3xl relative overflow-y-auto max-h-[90vh]">
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white text-2xl">&times;</button>
-            <img id="modal-img" src="" class="w-full h-64 object-cover rounded-2xl mb-6 shadow-lg shadow-purple-500/20">
-            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-purple-400 text-right"></h3>
-            <p id="modal-desc" class="text-slate-300 text-lg leading-relaxed mb-6 text-right"></p>
-            <div class="flex justify-between items-center border-t border-slate-700 pt-6">
-                <span id="modal-price" class="text-2xl font-bold text-white"></span>
-                <button class="shiny-purple px-8 py-3 rounded-xl font-bold">اشتري الآن</button>
-            </div>
+            <button class="btn-main" onclick="handleLogin()">Login</button>
         </div>
     </div>
 
+    <div id="main-site">
+        <nav>
+            <div class="logo"><h2>ZONE</h2></div>
+            <div class="nav-links">
+                <span onclick="showSection('home')">Home</span>
+                <span onclick="showSection('about')">About Us</span>
+                <span onclick="showSection('services')">Services</span>
+                <span onclick="showSection('contact')">Contact</span>
+            </div>
+            <div class="user-profile">
+                <i class="fas fa-moon" style="cursor:pointer" onclick="toggleDarkMode()"></i>
+                <div class="avatar" id="user-avatar" onclick="toggleLogoutMenu()">??</div>
+                <div class="logout-menu" id="logout-menu">
+                    <button class="btn-main" onclick="handleLogout()">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <section id="home" class="active hero">
+            <h1>Welcome to ZONE</h1>
+            <p style="font-size: 1.5rem; color: var(--text-gray);">We build the future with the latest technologies and world-class designs.</p>
+        </section>
+
+        <section id="about">
+            <div class="about-content">
+                <div style="width: 50%;">
+                    <h2>Who We Are</h2>
+                    <br>
+                    <p>ZONE is a leading software development company dedicated to transforming digital ideas into reality. We specialize in creating high-performance applications that scale.</p>
+                    <br>
+                    <p>Our team of expert developers uses cutting-edge tools to ensure that every product we deliver meets international quality standards. Innovation is our core value.</p>
+                </div>
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" alt="Coding" class="about-img">
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 style="text-align: center; margin-bottom: 40px;">Our Premium Services</h2>
+            <div class="services-grid" id="services-container">
+                </div>
+        </section>
+
+        <section id="contact" class="contact-container">
+            <h2>Get In Touch</h2>
+            <br>
+            <div style="font-size: 1.2rem;">
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: 01221546924</p>
+                <p><i class="fas fa-envelope"></i> Email: helalomar633@gmail.com</p>
+            </div>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-telegram"></i>
+                <i class="fab fa-linkedin"></i>
+            </div>
+        </section>
+    </div>
+
     <script>
-        // مصفوفة الخدمات
-        const services = [
-            { id: 1, title: "تطوير مواقع مخصصة", price: "$999", img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80", desc: "مواقع مصممة خصيصاً بأحدث التقنيات مثل React و Next.js." },
-            { id: 2, title: "تصميم تطبيقات الموبايل", price: "$1,500", img: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80", desc: "تصميمات واجهة مستخدم مذهلة لتطبيقات Android و iOS." },
-            { id: 3, title: "بناء منصات SaaS", price: "$4,999", img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", desc: "حلول برمجية سحابية قابلة للتوسع." },
-            { id: 4, title: "تحسين محركات البحث SEO", price: "$450", img: "https://i.postimg.cc/PqKbfQhs/seo-search-engine-optimization-business-concept-31965-4355.avif", desc: "رفع ترتيب موقعك في جوجل وزيادة الزيارات." },
-            { id: 5, title: "تدقيق تجربة المستخدم UI/UX", price: "$300", img: "https://i.postimg.cc/Wpq98xjX/v6kviuldgx0imkspnhmo.jpg", desc: "تحليل دقيق لتجربة المستخدم في منتجك." },
-            { id: 6, title: "البنية التحتية السحابية", price: "$1,200", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80", desc: "إعداد بيئات AWS/Azure آمنة وقابلة للتوسع." }
-        ]; // تم إغلاق المصفوفة بشكل صحيح هنا
+        // Check if user already logged in
+        window.onload = () => {
+            const savedUser = localStorage.getItem('zoneUser');
+            if(savedUser) {
+                renderUser(JSON.parse(savedUser));
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('main-site').style.display = 'block';
+            }
+            renderServices();
+        }
 
-        const grid = document.getElementById('services-grid');
+        function togglePass() {
+            const p = document.getElementById('pass');
+            p.type = p.type === 'password' ? 'text' : 'password';
+        }
 
-        // دالة لعرض الكروت
+        function handleLogin() {
+            const user = {
+                fname: document.getElementById('fname').value,
+                lname: document.getElementById('lname').value,
+                email: document.getElementById('email').value
+            };
+            if(!user.fname || !user.email) return alert("Please fill details");
+            
+            localStorage.setItem('zoneUser', JSON.stringify(user));
+            renderUser(user);
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('main-site').style.display = 'block';
+        }
+
+        function renderUser(user) {
+            const initials = (user.fname[0] + user.lname[0]).toUpperCase();
+            document.getElementById('user-avatar').innerText = initials;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('zoneUser');
+            location.reload();
+        }
+
+        function toggleLogoutMenu() {
+            const menu = document.getElementById('logout-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // Generate 20 Services
         function renderServices() {
-            grid.innerHTML = '';
-            services.forEach(service => {
-                const card = `
-                    <div class="glass rounded-3xl overflow-hidden card-hover group">
-                        <div class="overflow-hidden h-48">
-                            <img src="${service.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            const container = document.getElementById('services-container');
+            const services = [
+                "Web Development", "Mobile App", "UI/UX Design", "Cloud Systems", 
+                "AI Solutions", "Cyber Security", "Data Analysis", "Digital Marketing",
+                "E-Commerce", "API Integration", "Game Dev", "DevOps", 
+                "Blockchain", "IoT Solutions", "CRM Systems", "ERP Solutions",
+                "Technical Support", "Software Testing", "SEO Optimization", "Graphic Design"
+            ];
+
+            services.forEach((s, i) => {
+                container.innerHTML += `
+                    <div class="service-card">
+                        <img src="https://picsum.photos/seed/${i+20}/300/200" alt="Service">
+                        <h3>${s}</h3>
+                        <p class="price">$${(i + 1) * 50}</p>
+                        <p>High quality professional ${s} tailored for your business needs.</p>
+                        <div class="btn-group">
+                            <button class="btn-main" onclick="alert('Please contact us to buy this service')">Order Now</button>
+                            <button class="btn-main" style="background:#333" onclick="alert('Details: Detailed information about ${s} including roadmap and features.')">Details</button>
                         </div>
-                        <div class="p-6 text-right">
-                            <h3 class="text-xl font-bold mb-2 text-purple-300">${service.title}</h3>
-                            <p class="text-slate-400 text-sm mb-4 line-clamp-2">${service.desc}</p>
-                            <div class="flex justify-between items-center mb-6">
-                                <span class="text-2xl font-bold text-white">${service.price}</span>
-                                <span class="text-xs text-purple-400 uppercase tracking-tighter">خدمة مميزة</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <button class="flex-1 shiny-purple py-2 rounded-lg font-bold text-sm">طلب الخدمة</button>
-                                <button onclick="openModal(${service.id})" class="flex-1 border border-slate-700 hover:bg-white hover:text-black py-2 rounded-lg font-bold text-sm transition">التفاصيل</button>
-                            </div>
-                        </div>
-                    </div>`;
-                grid.innerHTML += card;
+                    </div>
+                `;
             });
         }
-
-        function openModal(id) {
-            const service = services.find(s => s.id === id);
-            document.getElementById('modal-img').src = service.img;
-            document.getElementById('modal-title').innerText = service.title;
-            document.getElementById('modal-desc').innerText = service.desc;
-            document.getElementById('modal-price').innerText = service.price;
-            document.getElementById('service-modal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            document.getElementById('service-modal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('service-modal')) closeModal();
-        }
-
-        // تشغيل الدالة عند تحميل الصفحة
-        renderServices();
     </script>
 </body>
 </html>
