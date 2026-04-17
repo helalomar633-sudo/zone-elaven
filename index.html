@@ -271,6 +271,8 @@ document.getElementById('togglePass').addEventListener('click', function() {
 });
 
 // --- Services Generation ---
+
+    // --- Services Generation ---
 function generateServices() {
     const container = document.getElementById('services-container');
     if (!container) return;
@@ -280,21 +282,27 @@ function generateServices() {
             title: "Web Development",
             price: 600,
             image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-            description: "1.Modern Frontend Architecture: Building responsive, \nhigh-performance user interfaces using HTML5,\n CSS3, and JavaScript, with expert styling via Tailwind\nCSS or Bootstrap for a seamless mobile
-            first experience. "
+            description: `• Modern Frontend Architecture: Building responsive, high-performance user interfaces using HTML5, CSS3, and JavaScript, with expert styling via Tailwind CSS or Bootstrap for a seamless mobile-first experience.
+• Robust Backend Logic: Developing secure and scalable server-side applications using Python, ensuring efficient data processing and smooth platform functionality.
+• Premium Visual Identity: Specialized in creating "Premium Design" aesthetics—featuring sleek dark modes and high-end color palettes that give your brand a sophisticated, modern edge.
+• SaaS & Platform Development: End-to-end creation of custom SaaS products, educational platforms, and CRM systems tailored to automate your business workflows.
+• Database Management: Designing and integrating optimized database structures to handle complex user data and high-traffic operations securely.
+• Clean Code & SEO Optimization: Writing maintainable, well-documented code that ensures fast loading speeds and better visibility on search engines.
+• Intuitive Admin Dashboards: Crafting user-friendly management panels that allow you to control your content, track analytics, and manage.`
         },
         {
             title: "Mobile App (Android/iOS)",
             price: 950,
             image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-            description: "1. 
+            description: "1. Cross-platform development\n2. High performance\n3. Native features integration"
         },
         {
-            title: "UI/UX Design
+            title: "UI/UX Design",
             price: 350,
             image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
             description: "1. دراسة تجربة المستخدم\n2. تصميم النماذج الأولية\n3. اختبار سهولة الاستخدام"
         },
+        // ... باقي الخدمات تبقى كما هي
         {
             title: "AI & Chatbots",
             price: 1200,
@@ -345,10 +353,10 @@ function generateServices() {
             <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 hover:border-blue-500/50 transition-all duration-300">
                 <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
                 <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
-                <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">خدمة احترافية مقدمة بأعلى معايير الجودة العالمية.</p>
+                <p class="text-xs text-gray-400 mb-4 line-clamp-3 leading-relaxed">Professional service delivered with the highest global quality standards.</p>
                 <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
                 <div class="flex gap-2">
-                    <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
+                    <button onclick="alert('Order Service: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm transition-all hover:brightness-110">Buy Now</button>
                     <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700 transition-all">Details</button>
                 </div>
             </div>
