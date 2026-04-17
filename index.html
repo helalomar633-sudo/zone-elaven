@@ -214,12 +214,39 @@
         location.reload();
     }
 
-    // --- Navigation ---
-    function showDetails(title, description) {
+   function showDetails(title, description) {
     const modal = document.getElementById('serviceModal');
     const mTitle = document.getElementById('modalTitle');
     const mDesc = document.getElementById('modalDescription');
 
+    // وضع البيانات داخل المودال
+    mTitle.innerText = title;
+    mDesc.innerText = description;
+
+    // إظهار المودال
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    // منع الصفحة الخلفية من السكرول أثناء فتح النافذة
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeDetails() {
+    const modal = document.getElementById('serviceModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    
+    // إعادة السكرول للطبيعي
+    document.body.style.overflow = 'auto';
+}
+
+// إضافة ميزة قفل المودال عند الضغط في أي مكان خارجي
+window.onclick = function(event) {
+    const modal = document.getElementById('serviceModal');
+    if (event.target == modal) {
+        closeDetails();
+    }
+}
     mTitle.innerText = title;
     mDesc.innerText = description;
 
@@ -268,17 +295,21 @@ darkModeBtn.addEventListener('click', () => {
 
 // --- Modal Logic Fix ---
 // ملاحظة: قمت بتعديل وظيفة showDetails لتعمل مع الـ Modal المصمم بدلاً من الـ Alert التقليدي
-function showDetails(title, description) {
-    const modal = document.getElementById('serviceModal');
-    const mTitle = document.getElementById('modalTitle');
-    const mDesc = document.getElementById('modalDescription');
 
-    mTitle.innerText = title;
-    mDesc.innerText = description;
+function showPage(pageId) {
+    // 1. إخفاء كل الصفحات عن طريق حذف class active
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
 
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden'; 
+    // 2. إظهار الصفحة المطلوبة فقط
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        // سكرول لأعلى الصفحة بسلاسة
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
 function closeDetails() {
