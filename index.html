@@ -176,6 +176,54 @@
 
     
         <script>   
+            // عند تحميل الصفحة، تأكد من إظهار صفحة التسجيل وإخفاء الموقع
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('auth-page').classList.remove('hidden');
+    document.getElementById('main-site').classList.add('hidden');
+});
+
+// التعامل مع فورم التسجيل
+document.getElementById('register-form').addEventListener('submit', (e) => {
+    e.preventDefault(); // منع الصفحة من إعادة التحميل
+
+    const fname = document.getElementById('fname').value;
+    const lname = document.getElementById('lname').value;
+
+    // إظهار أول حرف من الاسم في أيقونة المستخدم
+    document.getElementById('user-icon').innerText = fname[0].toUpperCase();
+
+    // إخفاء صفحة التسجيل وإظهار الموقع
+    document.getElementById('auth-page').classList.add('hidden');
+    document.getElementById('main-site').classList.remove('hidden');
+
+    // تشغيل دالة توليد الخدمات
+    generateServices();
+});
+
+// دالة التنقل بين الصفحات (Home, About, etc.)
+function showPage(pageId) {
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    document.getElementById(pageId).classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// دالة تفاصيل الخدمة (المودال)
+function showDetails(title, desc) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDescription').innerText = desc;
+    document.getElementById('serviceModal').style.display = 'flex';
+}
+
+function closeDetails() {
+    document.getElementById('serviceModal').style.display = 'none';
+}
+
+// دالة تسجيل الخروج
+function logout() {
+    location.reload(); // أسهل طريقة للعودة لحالة التسجيل
+}
            // --- Services Generation ---
 function generateServices() {
     const container = document.getElementById('services-container');
