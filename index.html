@@ -235,7 +235,60 @@ function closeDetails() {
     document.body.style.overflow = 'auto'; // إرجاع السكرول
 }
 
-// قفل المودال لو المستخدم ضغط بره الكارت
+// --- Navigation Logic (الإصلاح المطلوب) ---
+function showPage(pageId) {
+    // إخفاء كل الصفحات
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // إظهار الصفحة المطلوبة فقط
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        // سكرول لأعلى الصفحة عند الانتقال
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+// --- Dark Mode Toggle ---
+const darkModeBtn = document.getElementById('darkModeBtn');
+darkModeBtn.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    const icon = darkModeBtn.querySelector('i');
+    if (document.documentElement.classList.contains('dark')) {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        icon.style.color = '#60a5fa'; // Blue
+    } else {
+        icon.classList.replace('fa-moon', 'fa-sun');
+        icon.style.color = '#fbbf24'; // Yellow
+    }
+});
+
+// --- Modal Logic Fix ---
+// ملاحظة: قمت بتعديل وظيفة showDetails لتعمل مع الـ Modal المصمم بدلاً من الـ Alert التقليدي
+function showDetails(title, description) {
+    const modal = document.getElementById('serviceModal');
+    const mTitle = document.getElementById('modalTitle');
+    const mDesc = document.getElementById('modalDescription');
+
+    mTitle.innerText = title;
+    mDesc.innerText = description;
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden'; 
+}
+
+function closeDetails() {
+    const modal = document.getElementById('serviceModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+// قفل المودال عند الضغط خارجه
 window.onclick = function(event) {
     const modal = document.getElementById('serviceModal');
     if (event.target == modal) {
