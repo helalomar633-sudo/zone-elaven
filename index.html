@@ -374,13 +374,24 @@ function generateServices() {
             </div>
         `;
     });
-}
-// --- Dark Mode ---
-document.getElementById('darkModeBtn').addEventListener('click', () => {
+// --- Dark Mode Logic ---
+const darkModeBtn = document.getElementById('darkModeBtn');
+
+darkModeBtn.addEventListener('click', () => {
+    // تبديل كلاس dark على وسم html
     document.documentElement.classList.toggle('dark');
+    
+    // تبديل الأيقونة
     const icon = darkModeBtn.querySelector('i');
-    icon.classList.toggle('fa-moon');
-    icon.classList.toggle('fa-sun');
+    if (document.documentElement.classList.contains('dark')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        icon.style.color = '#60a5fa'; // لون أزرق للقمـر
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        icon.style.color = '#f59e0b'; // لون أصفر للشمس
+    }
 });
 
 // إظهار وإخفاء الباسورد
