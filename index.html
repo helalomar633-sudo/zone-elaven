@@ -65,6 +65,10 @@
     background: #7c3aed;
     border-radius: 10px;
 }
+        @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
         
     </style>
 </head>
@@ -216,13 +220,19 @@ regForm.addEventListener('submit', (e) => {
 });
 
 function login(user) {
-    authPage.classList.add('hidden');
+    // إخفاء صفحة التسجيل تماماً
+    authPage.style.display = 'none'; 
+    // إظهار الحاوية الرئيسية للموقع
     mainSite.classList.remove('hidden');
+    
+    // وضع الحروف الأولى من الاسم في الأيقونة
     const initials = (user.fname[0] || '') + (user.lname[0] || '');
     userIcon.innerText = initials.toUpperCase();
-    generateServices(); // توليد الخدمات فور الدخول
+    
+    // توليد الخدمات وإظهار صفحة الهوم تلقائياً
+    generateServices(); 
+    showPage('home'); 
 }
-
 window.onload = () => {
     const savedUser = localStorage.getItem('zone_user');
     if (savedUser) {
