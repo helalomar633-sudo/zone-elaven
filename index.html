@@ -285,90 +285,86 @@ window.onclick = function(event) {
 
 // --- توليد كروت الخدمات ---
 // --- توليد كروت الخدمات ---
+// --- توليد كروت الخدمات ---
 function generateServices() {
     const container = document.getElementById('services-container');
     if (!container) return;
 
-    // تم تصحيح طريقة تعريف المصفوفة هنا
- const servicesData = [
-    {
-        title: "Web Development",
-        price: 600,
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-        description: "1. بناء مواقع سريعة جداً\n2. تصميم واجهات تفاعل مرنة\n3. أكواد برمجية نظيفة تماماً\n4. حماية بيانات المستخدمين بقوة\n5. توافق تام مع الجوال\n6. تحسين محركات البحث بذكاء\n7. لوحة تحكم سهلة الإستخدام\n8. دعم فني متواصل دائماً\n9. قواعد بيانات ضخمة ومنظمة\n10. ربط بوابات الدفع الإلكتروني\n11. شهادة أمان مجانية تماماً\n12. استضافة سحابية فائقة السرعة\n13. نظام إشعارات فوري ومباشر\n14. تحليل سلوك الزوار بدقة\n15. تحديثات دورية للنظام مجاناً"
-    },
-    {
-        title: "Mobile App",
-        price: 950,
-        image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-        description: "1. أداء سلس وسريع جداً\n2. واجهة مستخدم عصرية وجذابة\n3. متوفر للأندرويد والآيفون معاً\n4. إشعارات دفع فورية ذكية\n5. العمل بدون إنترنت أحياناً\n6. خرائط دقيقية وتحديد مواقع\n7. تسجيل دخول اجتماعي سريع\n8. حماية خصوصية البيانات كاملة\n9. تجربة شراء سهلة وممتعة\n10. دعم لغات متعددة عالمياً\n11. رفع التطبيق للمتاجر الرسمية\n12. متوافق مع كافة الشاشات\n13. كفاءة استهلاك بطارية الهاتف\n14. نظام دردشة داخل التطبيق\n15. تقارير أداء دورية شاملة"
-    },
-    {
-        title: "Technical Support",
-        price: 200,
-        image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-        description: "1. حل المشاكل التقنية فوراً\n2. تحديث برمجيات المواقع دورياً\n3. نسخ احتياطي يومي للملفات\n4. إصلاح أخطاء الكود باحترافية\n5. تحسين سرعة الخادم بفعالية\n6. حماية المواقع من الاختراق\n7. استشارات فنية متخصصة دائماً\n8. إعداد البريد الإلكتروني للعمل\n9. مراقبة الموقع على مدار الساعة\n10. استعادة البيانات المفقودة بسرعة\n11. فحص دوري للثغرات الأمنية\n12. تهيئة بيئة العمل البرمجية\n13. دعم عبر الدردشة الحية\n14. تدريب الموظفين على النظام\n15. ضمان استمرارية الخدمة بنجاح"
-    },
-    {
-        title: "UI/UX Design",
-        price: 350,
-        image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
-        description: "1. دراسة سلوك المستخدم بعمق\n2. تصميم نماذج أولية تفاعلية\n3. اختيار ألوان مريحة للعين\n4. ترتيب عناصر الصفحة بذكاء\n5. تحسين رحلة العميل بالموقع\n6. شعارات وهوية بصرية فريدة\n7. أيقونات مخصصة وعالية الجودة\n8. تجربة استخدام سهلة وبسيطة\n9. اختبار سهولة الاستخدام فعلياً\n10. تحويل الأفكار لواقع مرئي\n11. واجهات تدعم اللغة العربية\n12. خطوط متناسقة واحترافية جداً\n13. تصميم الرسوم البيانية بوضوح\n14. ملفات التصميم مفتوحة المصدر\n15. توافق التصميم مع البرمجة"
-    },
-    {
-        title: "AI & Chatbots",
-        price: 1200,
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-        description: "1. بناء بوت ذكاء اصطناعي\n2. فهم لغة البشر الطبيعية\n3. ردود آلية ذكية وسريعة\n4. تحليل البيانات الكبيرة بدقة\n5. تعلم آلي مستمر ومنظم\n6. تحسين خدمة العملاء آلياً\n7. ربط البوت بتطبيقات التواصل\n8. تصنيف العملاء بشكل تلقائي\n9. توفير تكاليف الدعم البشري\n10. تكامل مع قواعد البيانات\n11. معالجة النصوص واللغات ببراعة\n12. توقع سلوك المستخدم المستقبلي\n13. دعم فني ذكي ومتواصل\n14. تقارير ذكاء أعمال مفصلة\n15. دقة عالية في النتائج"
-    },
-    {
-        title: "Cloud Infrastructure",
-        price: 800,
-        image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-        description: "1. إعداد خوادم سحابية قوية\n2. حماية البيانات من الفقدان\n3. توزيع الأحمال بذكاء فائق\n4. توفير مساحات تخزين مرنة\n5. إدارة الموارد بكفاءة عالية\n6. استضافة آمنة ومستقرة تماماً\n7. سرعة نقل بيانات خيالية\n8. حماية من هجمات الحجب\n9. مراقبة الأداء بشكل لحظي\n10. نظام تشفير بيانات متطور\n11. ربط الفروع بشبكة موحدة\n12. توافر الخدمة باستمرار دائم\n13. صيانة دورية للخوادم السحابية\n14. تكلفة تشغيل منخفضة وفعالة\n15. دعم فني لخبراء السحابة"
-    },
-    {
-        title: "Cyber Security",
-        price: 1500,
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-        description: "1. فحص الثغرات الأمنية بدقة\n2. اختبار اختراق الأنظمة باحترافية\n3. تشفير المعلومات الحساسة بقوة\n4. جدار حماية ناري متقدم\n5. كشف التسلل ومنع الهجمات\n6. تأمين الشبكات الداخلية والخارجية\n7. إدارة الهوية والوصول الآمن\n8. مكافحة البرمجيات الخبيثة بفعالية\n9. استجابة سريعة للحوادث الأمنية\n10. تقارير أمنية شاملة ومفصلة\n11. توعية الموظفين أمنياً بذكاء\n12. حماية الخصوصية الرقمية بالكامل\n13. التوافق مع المعايير العالمية\n14. مراقبة حركة المرور المشبوهة\n15. ضمان سلامة البيانات كلياً"
-    },
-    {
-        title: "E-Commerce Expert",
-        price: 750,
-        image: "https://images.unsplash.com/photo-1557821552-17105176677c",
-        description: "1. إنشاء متجر إلكتروني متكامل\n2. إدارة المنتجات والطلبات بسهولة\n3. ربط شركات الشحن المحلية\n4. تفعيل بوابات الدفع العالمية\n5. تحسين تجربة التسوق للعميل\n6. نظام كوبونات خصم متطور\n7. تقارير مبيعات يومية دقيقة\n8. إدارة المخزون بذكاء واحترافية\n9. تصميم متجر متوافق كلياً\n10. حماية عمليات الدفع الإلكترونية\n11. نظام مراجعات وتقييمات للعملاء\n12. قائمة رغبات ذكية للمستخدمين\n13. تتبع الشحنات بشكل مباشر\n14. دعم فني للتجار دائماً\n15. زيادة مبيعاتك بشكل ملحوظ"
-    },
-    {
-        title: "SEO Mastery",
-        price: 400,
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-        description: "1. تصدر نتائج البحث الأولى\n2. تحليل الكلمات المفتاحية بذكاء\n3. تحسين هيكلية الموقع التقنية\n4. بناء روابط خلفية قوية\n5. كتابة محتوى متوافق تماماً\n6. زيادة عدد الزوار الحقيقيين\n7. مراقبة المنافسين بشكل مستمر\n8. تحسين سرعة الموقع للمحركات\n9. تهيئة الصور لمحركات البحث\n10. تقارير أداء شهرية مفصلة\n11. إصلاح أخطاء الأرشفة فوراً\n12. تحسين تجربة المستخدم محلياً\n13. استراتيجيات نمو طويلة الأمد\n14. زيادة ظهور العلامة التجارية\n15. ضمان أرشفة سريعة للمقالات"
-    },
-    {
-        title: "API Integration",
-        price: 450,
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-        description: "1. ربط خدمات الطرف الثالث\n2. تكامل البيانات بسلاسة تامة\n3. مزامنة المعلومات بين الأنظمة\n4. توفير وثائق برمجية واضحة\n5. حماية نقاط الاتصال البرمجية\n6. اختبار جودة الربط التقني\n7. دعم بروتوكولات الربط الحديثة\n8. معالجة البيانات بكفاءة عالية\n9. تحديث البيانات بشكل لحظي\n10. ربط تطبيقات التواصل الاجتماعي\n11. أتمتة المهام البرمجية المعقدة\n12. واجهات برمجية آمنة ومستقرة\n13. توافق مع كافة المنصات\n14. حل مشاكل الربط بسرعة\n15. تسهيل نقل البيانات الضخمة"
-    }
-];
+    const servicesData = [
+        {
+            title: "Web Development",
+            price: 600,
+            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Building ultra-fast websites\n2. Responsive UI design\n3. Clean and optimized code\n4. Robust data security\n5. Full mobile compatibility\n6. Advanced SEO optimization\n7. User-friendly control panel\n8. 24/7 continuous technical support\n9. Organized large-scale databases\n10. Payment gateway integration\n11. Free SSL certificate\n12. High-speed cloud hosting\n13. Real-time notification system\n14. Visitor behavior analytics\n15. Free periodic system updates"
+        },
+        {
+            title: "Mobile App",
+            price: 950,
+            image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Smooth and fast performance\n2. Modern and attractive UI\n3. Cross-platform (iOS & Android)\n4. Smart push notifications\n5. Offline functionality support\n6. Precise GPS and mapping\n7. Quick social media login\n8. Full data privacy protection\n9. Seamless shopping experience\n10. Multi-language support\n11. App store publishing\n12. All-screen compatibility\n13. Efficient battery consumption\n14. In-app chat system\n15. Comprehensive performance reports"
+        },
+        {
+            title: "Technical Support",
+            price: 200,
+            image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Instant technical troubleshooting\n2. Regular software updates\n3. Daily automated backups\n4. Professional bug fixing\n5. Efficient server optimization\n6. Advanced hacking protection\n7. Expert technical consulting\n8. Business email setup\n9. 24/7 site monitoring\n10. Fast data recovery\n11. Periodic vulnerability scans\n12. Development environment setup\n13. Live chat support\n14. Staff training on systems\n15. Guaranteed service continuity"
+        },
+        {
+            title: "UI/UX Design",
+            price: 350,
+            image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Deep user behavior research\n2. Interactive prototyping\n3. Eye-friendly color palettes\n4. Smart element positioning\n5. Optimized customer journeys\n6. Unique branding & logos\n7. High-quality custom icons\n8. Simple & easy user experience\n9. Real-world usability testing\n10. Visual concept realization\n11. RTL & Arabic language support\n12. Professional typography\n13. Clear data visualization\n14. Source design files (Figma/Adobe)\n15. Developer-friendly handoff"
+        },
+        {
+            title: "AI & Chatbots",
+            price: 1200,
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Custom AI bot building\n2. Natural Language Processing (NLP)\n3. Fast & smart automated replies\n4. Precise big data analysis\n5. Continuous machine learning\n6. Automated customer service\n7. Social media integration\n8. Automatic lead classification\n9. Reduced human support costs\n10. Database integration\n11. Advanced text processing\n12. Future behavior prediction\n13. Smart continuous support\n14. Detailed BI reports\n15. High accuracy results"
+        },
+        {
+            title: "Cloud Infrastructure",
+            price: 800,
+            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Powerful cloud server setup\n2. Data loss prevention\n3. Smart load balancing\n4. Flexible storage solutions\n5. Resource management efficiency\n6. Secure & stable hosting\n7. Ultra-fast data transfer\n8. DDoS attack protection\n9. Real-time performance monitoring\n10. Advanced data encryption\n11. Unified branch networking\n12. 99.9% uptime guarantee\n13. Periodic cloud maintenance\n14. Cost-effective operations\n15. Cloud expert technical support"
+        },
+        {
+            title: "Cyber Security",
+            price: 1500,
+            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Deep vulnerability assessment\n2. Professional penetration testing\n3. Sensitive data encryption\n4. Advanced firewall setup\n5. Intrusion detection systems\n6. Internal/External network security\n7. Secure IAM management\n8. Effective malware protection\n10. Comprehensive security reports\n11. Smart employee awareness\n12. Full digital privacy protection\n13. International standard compliance\n14. Suspicious traffic monitoring\n15. Total data integrity guarantee"
+        },
+        {
+            title: "E-Commerce Expert",
+            price: 750,
+            image: "https://images.unsplash.com/photo-1557821552-17105176677c",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Full e-commerce store setup\n2. Easy order & product management\n3. Local shipping integration\n4. Global payment gateways\n5. Optimized shopping experience\n6. Advanced coupon systems\n7. Daily sales analytics\n8. Professional inventory control\n9. Fully responsive design\n10. Secure checkout processes\n11. Customer review systems\n12. Smart user wishlists\n13. Real-time shipment tracking\n14. Ongoing merchant support\n15. Significant sales growth"
+        }
+    ];
+
     container.innerHTML = ''; 
     servicesData.forEach((service) => {
         container.innerHTML += `
             <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card">
                 <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
                 <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
-               
+                <p class="text-xs text-gray-400 mb-4 line-clamp-2">${service.shortDesc}</p>
                 <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
                 <div class="flex gap-2">
-                    <button onclick="alert('طلب خدمة: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm hover:brightness-110">Buy Now</button>
+                    <button onclick="alert('Ordering: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm hover:brightness-110">Buy Now</button>
                     <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700">Details</button>
                 </div>
             </div>
         `;
     });
 }
-
 // --- Dark Mode ---
 document.getElementById('darkModeBtn').addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
