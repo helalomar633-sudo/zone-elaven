@@ -145,7 +145,7 @@
         </section>
 
         <section id="services" class="page min-h-screen p-10">
-            <h2 class="text-4xl font-bold mb-12 text-center neon-text">Our Digital Services</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center neon-text">Services</h2>
             <div id="services-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 </div>
         </section>
@@ -154,8 +154,8 @@
     <div class="glass p-10 md:p-16 rounded-[2.5rem] w-full max-w-4xl text-center space-y-10 shadow-2xl border-2 border-purple-500/20 m-auto">
         
         <div class="space-y-4">
-            <h2 class="text-5xl md:text-7xl font-black neon-text mb-4">Get In Touch</h2>
-            <p class="text-gray-400 text-lg md:text-xl">We are here to help you build your next big project.</p>
+            <h2 class="text-5xl md:text-7xl font-black neon-text mb-4">Let’s Build Your Vision or Get a Service</h2>
+            <p class="text-gray-400 text-lg md:text-xl">Reach out to us to start your next project or purchase a professional service tailored for you.</p>
         </div>
         
         <div class="grid md:grid-cols-2 gap-8 py-4">
@@ -297,16 +297,18 @@ function generateServices() {
     if (!container) return;
 
     const servicesData = [
-       {
-    title: "Web Design",
-    price: 200,
-    image: "https://i.postimg.cc/6qQwbjFM/OIP-(3).jpg",
-    shortDesc: "Professional service provided with the highest international quality standards.",
-    description: "What we will provide for you:\n\n1. Modern & Creative UI Design\n2. User Experience (UX) Optimization\n3. High-Fidelity Wireframes\n4. Custom Layout Design\n5. Brand-Specific Color Palettes\n6. Professional Typography Selection\n7. Responsive Design for All Screens\n8. Interactive Component Design\n9. Eye-Catching Visual Elements\n10. Mobile-First Design Approach\n11. Custom Iconography\n12. Design Handoff for Developers\n13. Conversion-Rate Focused Layouts\n14. Professional Image Selection\n15. Multi-Device Prototype"
-},
+        {
+            title: "Web Design",
+            price: 200,
+            sales: 124,
+            image: "https://i.postimg.cc/6qQwbjFM/OIP-(3).jpg",
+            shortDesc: "Professional service provided with the highest international quality standards.",
+            description: "What we will provide for you:\n\n1. Modern & Creative UI Design\n2. User Experience (UX) Optimization\n3. High-Fidelity Wireframes\n4. Custom Layout Design\n5. Brand-Specific Color Palettes\n6. Professional Typography Selection\n7. Responsive Design for All Screens\n8. Interactive Component Design\n9. Eye-Catching Visual Elements\n10. Mobile-First Design Approach\n11. Custom Iconography\n12. Design Handoff for Developers\n13. Conversion-Rate Focused Layouts\n14. Professional Image Selection\n15. Multi-Device Prototype"
+        },
         {
             title: "Web Development",
             price: 100,
+            sales: 89,
             image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Building ultra-fast websites\n2. Responsive UI design\n3. Clean and optimized code\n4. Robust data security\n5. Full mobile compatibility\n6. Advanced SEO optimization\n7. User-friendly control panel\n8. 24/7 continuous technical support\n9. Organized large-scale databases\n10. Payment gateway integration\n11. Free SSL certificate\n12. High-speed cloud hosting\n13. Real-time notification system\n14. Visitor behavior analytics\n15. Free periodic system updates"
@@ -314,6 +316,7 @@ function generateServices() {
         {
             title: "Mobile App",
             price: 250,
+            sales: 56,
             image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Smooth and fast performance\n2. Modern and attractive UI\n3. Cross-platform (iOS & Android)\n4. Smart push notifications\n5. Offline functionality support\n6. Precise GPS and mapping\n7. Quick social media login\n8. Full data privacy protection\n9. Seamless shopping experience\n10. Multi-language support\n11. App store publishing\n12. All-screen compatibility\n13. Efficient battery consumption\n14. In-app chat system\n15. Comprehensive performance reports"
@@ -321,6 +324,7 @@ function generateServices() {
         {
             title: "Technical Support",
             price: 200,
+            sales: 210,
             image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Instant technical troubleshooting\n2. Regular software updates\n3. Daily automated backups\n4. Professional bug fixing\n5. Efficient server optimization\n6. Advanced hacking protection\n7. Expert technical consulting\n8. Business email setup\n9. 24/7 site monitoring\n10. Fast data recovery\n11. Periodic vulnerability scans\n12. Development environment setup\n13. Live chat support\n14. Staff training on systems\n15. Guaranteed service continuity"
@@ -328,6 +332,7 @@ function generateServices() {
         {
             title: "UI/UX Design",
             price: 350,
+            sales: 75,
             image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Deep user behavior research\n2. Interactive prototyping\n3. Eye-friendly color palettes\n4. Smart element positioning\n5. Optimized customer journeys\n6. Unique branding & logos\n7. High-quality custom icons\n8. Simple & easy user experience\n9. Real-world usability testing\n10. Visual concept realization\n11. RTL & Arabic language support\n12. Professional typography\n13. Clear data visualization\n14. Source design files (Figma/Adobe)\n15. Developer-friendly handoff"
@@ -335,6 +340,7 @@ function generateServices() {
         {
             title: "AI & Chatbots",
             price: 600,
+            sales: 42,
             image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Custom AI bot building\n2. Natural Language Processing (NLP)\n3. Fast & smart automated replies\n4. Precise big data analysis\n5. Continuous machine learning\n6. Automated customer service\n7. Social media integration\n8. Automatic lead classification\n9. Reduced human support costs\n10. Database integration\n11. Advanced text processing\n12. Future behavior prediction\n13. Smart continuous support\n14. Detailed BI reports\n15. High accuracy results"
@@ -342,6 +348,7 @@ function generateServices() {
         {
             title: "Cloud Infrastructure",
             price: 800,
+            sales: 29,
             image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Powerful cloud server setup\n2. Data loss prevention\n3. Smart load balancing\n4. Flexible storage solutions\n5. Resource management efficiency\n6. Secure & stable hosting\n7. Ultra-fast data transfer\n8. DDoS attack protection\n9. Real-time performance monitoring\n10. Advanced data encryption\n11. Unified branch networking\n12. 99.9% uptime guarantee\n13. Periodic cloud maintenance\n14. Cost-effective operations\n15. Cloud expert technical support"
@@ -349,13 +356,15 @@ function generateServices() {
         {
             title: "Cyber Security",
             price: 1000,
+            sales: 18,
             image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
             shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Deep vulnerability assessment\n2. Professional penetration testing\n3. Sensitive data encryption\n4. Advanced firewall setup\n5. Intrusion detection systems\n6. Internal/External network security\n7. Secure IAM management\n8. Effective malware protection\n10. Comprehensive security reports\n11. Smart employee awareness\n12. Full digital privacy protection\n13. International standard compliance\n14. Suspicious traffic monitoring\n15. Total data integrity guarantee"
+            description: "What we will provide for you:\n\n1. Deep vulnerability assessment\n2. Professional penetration testing\n3. Sensitive data encryption\n4. Advanced firewall setup\n5. Intrusion detection systems\n6. Internal/External network security\n7. Secure IAM management\n8. Effective malware protection\n9. Threat intelligence analysis\n10. Comprehensive security reports\n11. Smart employee awareness\n12. Full digital privacy protection\n13. International standard compliance\n14. Suspicious traffic monitoring\n15. Total data integrity guarantee"
         },
         {
             title: "E-Commerce Expert",
             price: 250,
+            sales: 112,
             image: "https://images.unsplash.com/photo-1557821552-17105176677c",
             shortDesc: "Professional service provided with the highest international quality standards.",
             description: "What we will provide for you:\n\n1. Full e-commerce store setup\n2. Easy order & product management\n3. Local shipping integration\n4. Global payment gateways\n5. Optimized shopping experience\n6. Advanced coupon systems\n7. Daily sales analytics\n8. Professional inventory control\n9. Fully responsive design\n10. Secure checkout processes\n11. Customer review systems\n12. Smart user wishlists\n13. Real-time shipment tracking\n14. Ongoing merchant support\n15. Significant sales growth"
@@ -365,18 +374,38 @@ function generateServices() {
     container.innerHTML = ''; 
     servicesData.forEach((service) => {
         container.innerHTML += `
-            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card">
-                <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg mb-4 h-44 object-cover" alt="${service.title}">
+            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card relative overflow-hidden">
+                ${service.sales > 80 ? '<div class="absolute top-3 left-3 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-full z-10 shadow-lg">BEST SELLER</div>' : ''}
+                
+                <div class="relative group mb-4">
+                    <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg h-44 w-full object-cover" alt="${service.title}">
+                    <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1">
+                        <i class="fas fa-shopping-basket text-purple-400 text-xs"></i>
+                        <span class="text-[11px] font-bold text-gray-200">${service.sales} Sales</span>
+                    </div>
+                </div>
+
                 <h3 class="text-xl font-bold mb-2 text-white">${service.title}</h3>
                 <p class="text-xs text-gray-400 mb-4 line-clamp-2">${service.shortDesc}</p>
-                <div class="text-blue-400 font-bold mb-6 text-2xl mt-auto">$${service.price}</div>
+                
+                <div class="flex justify-between items-end mb-6 mt-auto">
+                    <div class="text-blue-400 font-bold text-2xl">$${service.price}</div>
+                    <div class="flex items-center text-yellow-500 text-xs">
+                        <i class="fas fa-star mr-1"></i>
+                        <span class="text-gray-300">4.9</span>
+                    </div>
+                </div>
+
                 <div class="flex gap-2">
-                    <button onclick="alert('Ordering: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm hover:brightness-110">Buy Now</button>
+                    <button onclick="alert('Ordering: ${service.title}')" class="flex-[2] bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-2 rounded-lg text-sm hover:brightness-110 flex items-center justify-center gap-2">
+                        <i class="fas fa-shopping-cart text-xs"></i> Buy Now
+                    </button>
                     <button onclick="showDetails('${service.title}', \`${service.description}\`)" class="flex-1 border border-gray-600 text-gray-300 py-2 rounded-lg text-sm hover:bg-gray-700">Details</button>
                 </div>
             </div>
         `;
     });
+}
 
     
 }
