@@ -312,90 +312,180 @@ function generateServices() {
 
     const servicesData = [
         {
-            title: "Web Design",
-            price: 200,
-            sales: 124,
-            image: "https://i.postimg.cc/6qQwbjFM/OIP-(3).jpg",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Modern & Creative UI Design\n2. User Experience (UX) Optimization\n3. High-Fidelity Wireframes\n4. Custom Layout Design\n5. Brand-Specific Color Palettes\n6. Professional Typography Selection\n7. Responsive Design for All Screens\n8. Interactive Component Design\n9. Eye-Catching Visual Elements\n10. Mobile-First Design Approach\n11. Custom Iconography\n12. Design Handoff for Developers\n13. Conversion-Rate Focused Layouts\n14. Professional Image Selection\n15. Multi-Device Prototype"
-        },
-        {
-            title: "Web Development",
-            price: 100,
-            sales: 89,
-            image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Building ultra-fast websites\n2. Responsive UI design\n3. Clean and optimized code\n4. Robust data security\n5. Full mobile compatibility\n6. Advanced SEO optimization\n7. User-friendly control panel\n8. 24/7 continuous technical support\n9. Organized large-scale databases\n10. Payment gateway integration\n11. Free SSL certificate\n12. High-speed cloud hosting\n13. Real-time notification system\n14. Visitor behavior analytics\n15. Free periodic system updates"
-        },
-        {
-            title: "Mobile App",
-            price: 250,
-            sales: 56,
-            image: "https://i.postimg.cc/fL07qLTx/OIP-(2).jpg",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Smooth and fast performance\n2. Modern and attractive UI\n3. Cross-platform (iOS & Android)\n4. Smart push notifications\n5. Offline functionality support\n6. Precise GPS and mapping\n7. Quick social media login\n8. Full data privacy protection\n9. Seamless shopping experience\n10. Multi-language support\n11. App store publishing\n12. All-screen compatibility\n13. Efficient battery consumption\n14. In-app chat system\n15. Comprehensive performance reports"
-        },
-        {
-            title: "Technical Support",
-            price: 200,
-            sales: 210,
-            image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Instant technical troubleshooting\n2. Regular software updates\n3. Daily automated backups\n4. Professional bug fixing\n5. Efficient server optimization\n6. Advanced hacking protection\n7. Expert technical consulting\n8. Business email setup\n9. 24/7 site monitoring\n10. Fast data recovery\n11. Periodic vulnerability scans\n12. Development environment setup\n13. Live chat support\n14. Staff training on systems\n15. Guaranteed service continuity"
-        },
-        {
-            title: "UI/UX Design",
-            price: 350,
-            sales: 75,
-            image: "https://i.postimg.cc/sfvby91m/OIP-(1).jpg",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Deep user behavior research\n2. Interactive prototyping\n3. Eye-friendly color palettes\n4. Smart element positioning\n5. Optimized customer journeys\n6. Unique branding & logos\n7. High-quality custom icons\n8. Simple & easy user experience\n9. Real-world usability testing\n10. Visual concept realization\n11. RTL & Arabic language support\n12. Professional typography\n13. Clear data visualization\n14. Source design files (Figma/Adobe)\n15. Developer-friendly handoff"
-        },
-        {
-            title: "AI & Chatbots",
-            price: 600,
-            sales: 42,
-            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Custom AI bot building\n2. Natural Language Processing (NLP)\n3. Fast & smart automated replies\n4. Precise big data analysis\n5. Continuous machine learning\n6. Automated customer service\n7. Social media integration\n8. Automatic lead classification\n9. Reduced human support costs\n10. Database integration\n11. Advanced text processing\n12. Future behavior prediction\n13. Smart continuous support\n14. Detailed BI reports\n15. High accuracy results"
-        },
-        {
-            title: "Cloud Infrastructure",
-            price: 800,
-            sales: 29,
-            image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Powerful cloud server setup\n2. Data loss prevention\n3. Smart load balancing\n4. Flexible storage solutions\n5. Resource management efficiency\n6. Secure & stable hosting\n7. Ultra-fast data transfer\n8. DDoS attack protection\n9. Real-time performance monitoring\n10. Advanced data encryption\n11. Unified branch networking\n12. 99.9% uptime guarantee\n13. Periodic cloud maintenance\n14. Cost-effective operations\n15. Cloud expert technical support"
-        },
-        {
-            title: "Cyber Security",
-            price: 1000,
-            sales: 18,
-            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Deep vulnerability assessment\n2. Professional penetration testing\n3. Sensitive data encryption\n4. Advanced firewall setup\n5. Intrusion detection systems\n6. Internal/External network security\n7. Secure IAM management\n8. Effective malware protection\n9. Threat intelligence analysis\n10. Comprehensive security reports\n11. Smart employee awareness\n12. Full digital privacy protection\n13. International standard compliance\n14. Suspicious traffic monitoring\n15. Total data integrity guarantee"
-        },
-        {
-            title: "E-Commerce Expert",
-            price: 250,
-            sales: 112,
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c",
-            shortDesc: "Professional service provided with the highest international quality standards.",
-            description: "What we will provide for you:\n\n1. Full e-commerce store setup\n2. Easy order & product management\n3. Local shipping integration\n4. Global payment gateways\n5. Optimized shopping experience\n6. Advanced coupon systems\n7. Daily sales analytics\n8. Professional inventory control\n9. Fully responsive design\n10. Secure checkout processes\n11. Customer review systems\n12. Smart user wishlists\n13. Real-time shipment tracking\n14. Ongoing merchant support\n15. Significant sales growth"
-        }
-    ];
-
-    container.innerHTML = ''; 
-    servicesData.forEach((service) => {
+        title: "Web Design",
+        price: 200,
+        sales: 124,
+        images: [
+            "https://images.unsplash.com/photo-1586717791821-3f44a563dc4c",
+            "https://images.unsplash.com/photo-1547658719-da2b51169166",
+            "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8",
+            "https://images.unsplash.com/photo-1522542550221-31fd19575a2d",
+            "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d",
+            "https://images.unsplash.com/photo-1558655146-d09347e92766",
+            "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e",
+            "https://images.unsplash.com/photo-1545235617-9465d2a55698"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Modern & Creative UI Design\n2. User Experience (UX) Optimization..." 
+    },
+    {
+        title: "Web Development",
+        price: 100,
+        sales: 89,
+        images: [
+            "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c",
+            "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+            "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2",
+            "https://images.unsplash.com/photo-1504639725590-34d0984388bd",
+            "https://images.unsplash.com/photo-1542831371-29b0f74f9713",
+            "https://images.unsplash.com/photo-1516116216624-53e697fedbea",
+            "https://images.unsplash.com/photo-1515879218367-8466d910aaa4"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Building ultra-fast websites\n2. Clean and optimized code..."
+    },
+    {
+        title: "Mobile App",
+        price: 250,
+        sales: 56,
+        images: [
+            "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c",
+            "https://images.unsplash.com/photo-1526040652367-ac003a0475fe",
+            "https://images.unsplash.com/photo-1551650975-87deedd944c3",
+            "https://images.unsplash.com/photo-1535223289827-42f1e9919769",
+            "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5",
+            "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+            "https://images.unsplash.com/photo-1523206489230-c012c64b2b48",
+            "https://images.unsplash.com/photo-1454165205744-3b78555e5572"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Smooth and fast performance\n2. Cross-platform (iOS & Android)..."
+    },
+    {
+        title: "Technical Support",
+        price: 200,
+        sales: 210,
+        images: [
+            "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+            "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+            "https://images.unsplash.com/photo-1531482615713-2afd69097998",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+            "https://images.unsplash.com/photo-1553877522-43269d4ea984",
+            "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6",
+            "https://images.unsplash.com/photo-1600880212319-7524ded9c16a",
+            "https://images.unsplash.com/photo-1551434678-e076c223a692"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Instant technical troubleshooting\n2. Regular software updates..."
+    },
+    {
+        title: "UI/UX Design",
+        price: 350,
+        sales: 75,
+        images: [
+            "https://images.unsplash.com/photo-1561070791-2526d30994b5",
+            "https://images.unsplash.com/photo-1586717791821-3f44a563dc4c",
+            "https://images.unsplash.com/photo-1618761767330-8451b8858021",
+            "https://images.unsplash.com/photo-1587440871875-191322ee64b0",
+            "https://images.unsplash.com/photo-1613909209435-242751e67f8b",
+            "https://images.unsplash.com/photo-1541462608141-ad4d769421a1",
+            "https://images.unsplash.com/photo-1558655146-d09347e92766",
+            "https://images.unsplash.com/photo-1576153192621-7a3be10b356e"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Deep user behavior research\n2. Interactive prototyping..."
+    },
+    {
+        title: "AI & Chatbots",
+        price: 600,
+        sales: 42,
+        images: [
+            "https://images.unsplash.com/photo-1677442136019-21780ecad995",
+            "https://images.unsplash.com/photo-1593508512255-86ab42a8e620",
+            "https://images.unsplash.com/photo-1531746790731-6c087fecd05a",
+            "https://images.unsplash.com/photo-1620712943543-bcc4628c9757",
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+            "https://images.unsplash.com/photo-1675557009875-436f595b3954",
+            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+            "https://images.unsplash.com/photo-1518770660439-4636190af475"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Custom AI bot building\n2. Natural Language Processing (NLP)..."
+    },
+    {
+        title: "Cloud Infrastructure",
+        price: 800,
+        sales: 29,
+        images: [
+            "https://images.unsplash.com/photo-1451187580459-43490279c0fa",
+            "https://images.unsplash.com/photo-1544197150-b99a580bb7a8",
+            "https://images.unsplash.com/photo-1558494949-ef010cbdcc4b",
+            "https://images.unsplash.com/photo-1560732488-6b0df240254a",
+            "https://images.unsplash.com/photo-1597733336794-12d05021d510",
+            "https://images.unsplash.com/photo-1518770660439-4636190af475",
+            "https://images.unsplash.com/photo-1516116216624-53e697fedbea",
+            "https://images.unsplash.com/photo-1483473338119-29c3a30f9d90"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Powerful cloud server setup\n2. Data loss prevention..."
+    },
+    {
+        title: "Cyber Security",
+        price: 1000,
+        sales: 18,
+        images: [
+            "https://images.unsplash.com/photo-1550751827-4bd374c3f58b",
+            "https://images.unsplash.com/photo-1563986768609-322da13575f3",
+            "https://images.unsplash.com/photo-1542831371-29b0f74f9713",
+            "https://images.unsplash.com/photo-1510511459019-5dda7724fd87",
+            "https://images.unsplash.com/photo-1614064641935-4475504620ec",
+            "https://images.unsplash.com/photo-1563206767-5b18f218e8de",
+            "https://images.unsplash.com/photo-1633265486231-22bb5921848b",
+            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Deep vulnerability assessment\n2. Professional penetration testing..."
+    },
+    {
+        title: "E-Commerce Expert",
+        price: 250,
+        sales: 112,
+        images: [
+            "https://images.unsplash.com/photo-1557821552-17105176677c",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+            "https://images.unsplash.com/photo-1523474253046-2cd2c78b0db0",
+            "https://images.unsplash.com/photo-1472851294608-062f824d29cc",
+            "https://images.unsplash.com/photo-1512428559087-560fa5ceab42",
+            "https://images.unsplash.com/photo-1441986300917-64674bd600d8",
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
+            "https://images.unsplash.com/photo-1534452203294-49c8913721b2"
+        ],
+        shortDesc: "Professional service provided with the highest international quality standards.",
+        description: "1. Full e-commerce store setup\n2. Easy order & product management..."
+    }
+];
+    
+container.innerHTML = '';
+    servicesData.forEach((service, serviceIndex) => {
         container.innerHTML += `
-            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card relative overflow-hidden">
-                ${service.sales > 80 ? '<div class="absolute top-3 left-3 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-full z-10 shadow-lg">BEST SELLER</div>' : ''}
+            <div class="glass p-5 rounded-xl flex flex-col shadow-lg border border-white/10 service-card relative overflow-hidden" id="service-${serviceIndex}">
+                ${service.sales > 80 ? '<div class="absolute top-3 left-3 bg-yellow-500 text-black text-[10px] font-bold px-2 py-1 rounded-full z-20 shadow-lg">BEST SELLER</div>' : ''}
                 
-                <div class="relative group mb-4">
-                    <img src="${service.image}?auto=format&fit=crop&w=400&q=80" class="rounded-lg h-44 w-full object-cover" alt="${service.title}">
-                    <div class="absolute bottom-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded-md flex items-center gap-1">
-                        <i class="fas fa-shopping-basket text-purple-400 text-xs"></i>
-                        <span class="text-[11px] font-bold text-gray-200">${service.sales} Sales</span>
+                <div class="relative group mb-4 overflow-hidden rounded-lg h-44">
+                    <div class="flex transition-transform duration-500 ease-out h-full" id="slider-${serviceIndex}">
+                        ${service.images.map(img => `<img src="${img}?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover flex-shrink-0" alt="${service.title}">`).join('')}
+                    </div>
+                    
+                    <button onclick="prevImg(${serviceIndex}, ${service.images.length})" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-purple-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all z-10">
+                        <i class="fas fa-chevron-left text-xs"></i>
+                    </button>
+                    <button onclick="nextImg(${serviceIndex}, ${service.images.length})" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-purple-600 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all z-10">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </button>
+
+                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full text-[10px] font-bold text-gray-300 z-10">
+                        <span id="counter-${serviceIndex}">1</span> / ${service.images.length}
                     </div>
                 </div>
 
@@ -419,9 +509,32 @@ function generateServices() {
             </div>
         `;
     });
+}
 
+// --- وظائف التحكم في السلايدر ---
+let currentImages = {}; // لتتبع الصورة الحالية لكل خدمة
 
+function nextImg(serviceIndex, total) {
+    if (!currentImages[serviceIndex]) currentImages[serviceIndex] = 0;
+    currentImages[serviceIndex] = (currentImages[serviceIndex] + 1) % total;
+    updateSlider(serviceIndex);
+}
+
+function prevImg(serviceIndex, total) {
+    if (!currentImages[serviceIndex]) currentImages[serviceIndex] = 0;
+    currentImages[serviceIndex] = (currentImages[serviceIndex] - 1 + total) % total;
+    updateSlider(serviceIndex);
+}
+
+function updateSlider(serviceIndex) {
+    const slider = document.getElementById(`slider-${serviceIndex}`);
+    const counter = document.getElementById(`counter-${serviceIndex}`);
+    const index = currentImages[serviceIndex];
     
+    // تحريك مصفوفة الصور
+    slider.style.transform = `translateX(-${index * 100}%)`;
+    // تحديث الرقم الظاهر
+    counter.innerText = index + 1;
 }
 // إظهار وإخفاء الباسورد
 document.getElementById('togglePass').addEventListener('click', function() {
