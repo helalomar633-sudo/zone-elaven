@@ -204,17 +204,31 @@ const regForm = document.getElementById('register-form');
 const userIcon = document.getElementById('user-icon');
 
 // --- منطق التسجيل والدخول ---
+// --- منطق التسجيل والدخول مع التحقق من كلمة المرور ---
 regForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    
+    const password = document.getElementById('password').value;
+    
+    // التعبير النمطي (Regex): 
+    // (?=.*[a-zA-Z].*[a-zA-Z]) تعني وجود حرفين على الأقل (كبير أو صغير)
+    // .{8,} تعني الطول الإجمالي لا يقل عن 8
+    const passwordRegex = /^(?=.*[a-zA-Z].*[a-zA-Z]).{8,}$/;
+
+    if (!passwordRegex.test(password)) {
+        alert("Password must be at least 8 characters long and contain at least 2 letters.");
+        return; // توقف هنا ولا تكمل التسجيل
+    }
+
     const userData = {
         fname: document.getElementById('fname').value,
         lname: document.getElementById('lname').value,
         email: document.getElementById('email').value
     };
+    
     localStorage.setItem('zone_user', JSON.stringify(userData));
     login(userData);
 });
-
 function login(user) {
     authPage.classList.add('hidden');
     mainSite.classList.remove('hidden');
